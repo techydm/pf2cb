@@ -22,7 +22,6 @@ export default {
   name: "NavBar",
   setup() {
     const tools = ref([{ path: "#", name: "", icon: "" }]);
-
     return { tools };
   }
 };

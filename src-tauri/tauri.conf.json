@@ -35,8 +35,8 @@
     },
     "window": {
       "title": "pathfinder 2: character builder",
-      "width": 800,
-      "height": 600,
+      "width": 1200,
+      "height": 900,
       "resizable": true,
       "fullscreen": false
     },
