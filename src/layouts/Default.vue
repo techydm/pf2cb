@@ -1,9 +1,14 @@
 <template>
   <div>
     <div class="layout">
-      <SideNav />
+      <div class="side-nav">
+        <SideNav />
+      </div>
       <div class="page">
         <slot />
+      </div>
+      <div class="bottom-nav">
+        <SideNav />
       </div>
     </div>
   </div>
@@ -41,5 +46,33 @@ body {
   padding-top: 20px;
   overflow-scrolling: auto;
   overflow-y: auto;
+}
+
+@media only screen and (max-width: 600px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .side-nav {
+    display: none;
+  }
+
+  .bottom-nav {
+    display: flex;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .layout {
+    flex-direction: row;
+  }
+
+  .side-nav {
+    display: flex;
+  }
+
+  .bottom-nav {
+    display: none;
+  }
 }
 </style>

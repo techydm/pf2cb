@@ -4,7 +4,6 @@
       <li class="nav-logo">
         <router-link class="logo-link" to="/">
           <img class="logo" src="../../assets/logo.png" alt="TechyDM" />
-          <span class="nav-text">TechyDM</span>
         </router-link>
       </li>
       <li v-for="tool in tools" :key="tool.name" class="nav-item">
@@ -17,12 +16,11 @@
 </template>
 
 <script>
-import { ref } from "@vue/composition-api";
+import ToolServices from "@/services/tools";
 export default {
   name: "NavBar",
   setup() {
-    const tools = ref([{ path: "#", name: "", icon: "" }]);
-    return { tools };
+    return { ...ToolServices() };
   }
 };
 </script>
@@ -31,8 +29,6 @@ export default {
 @import "../../assets/styles";
 
 .sidenav {
-  width: 5rem;
-  height: 100vh;
   background-color: $primary;
   transition: width 250ms ease;
 }
@@ -45,14 +41,6 @@ export default {
   flex-direction: column;
   align-items: center;
   height: 100%;
-}
-
-.sidenav:hover {
-  width: 16rem;
-}
-
-.sidenav:hover .nav-text {
-  display: block;
 }
 
 .nav-item {
@@ -73,12 +61,6 @@ export default {
 .nav-link:hover {
   color: $accent;
   background-color: $dark;
-}
-
-.nav-text {
-  display: none;
-  margin-left: 1rem;
-  transition: display 200ms ease-in;
 }
 
 .nav-link i {
@@ -110,6 +92,41 @@ export default {
 .nav-text {
   display: none;
   margin-left: 1rem;
-  color: $accent;
+  color: $light;
+}
+
+@media only screen and (max-width: 600px) {
+  .sidenav {
+    width: 100vw;
+    height: 5rem;
+  }
+
+  .nav-logo {
+    display: none;
+  }
+
+  .nav-items {
+    flex-direction: row;
+  }
+
+  .nav-link {
+    justify-content: center;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .sidenav {
+    width: 5rem;
+    height: 100vh;
+  }
+
+  .sidenav:hover {
+    width: 16rem;
+  }
+
+  .sidenav:hover .nav-text {
+    display: inline;
+    transition: opacity 250ms ease;
+  }
 }
 </style>
