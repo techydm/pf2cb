@@ -2,6 +2,10 @@
   <h1>Hello World</h1>
 </template>
 
-<script lang="ts"></script>
+<script lang="ts">
+export default {
+  name: "class"
+};
+</script>
 
 <style lang="scss"></style>

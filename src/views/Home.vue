@@ -1,10 +1,8 @@
 <template>
-  <Layout>
-    <div class="center has-text-centered">
-      <img width="400" alt="Vue logo" src="../assets/logo.png" />
-      <Landing msg="Welcome to Your Vue.js App" />
-    </div>
-  </Layout>
+  <div class="center has-text-centered">
+    <img width="400" alt="Vue logo" src="../assets/logo.png" />
+    <Landing msg="Welcome to Your Vue.js App" />
+  </div>
 </template>
 
 <script>
