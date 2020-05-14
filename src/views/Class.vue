@@ -11,18 +11,36 @@
       <ClassCard class="class-card" />
       <ClassCard class="class-card" />
     </div>
-    <b-button type="is-info" class="new-button" size="is-large">
+    <b-button
+      type="is-info"
+      class="new-button"
+      size="is-large"
+      @click="isOpen = true"
+    >
       <i class="ra ra-forging ra-fw ra-3x" />
     </b-button>
+    <!--  Modal  -->
+    <b-modal :active.sync="isOpen" :can-cancel="['x']">
+      <ClassForm />
+    </b-modal>
   </div>
 </template>
 
 <script lang="ts">
+import { Ref, ref } from "@vue/composition-api";
 import ClassCard from "@/components/classes/ClassCard.vue";
+import ClassForm from "@/components/classes/form/ClassForm.vue";
+
 export default {
   name: "class",
   components: {
-    ClassCard
+    ClassCard,
+    ClassForm
+  },
+  setup() {
+    const isOpen: Ref<boolean> = ref(false);
+
+    return { isOpen };
   }
 };
 </script>
