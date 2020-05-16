@@ -1,10 +1,43 @@
 import { Feat, TypeFeat } from "@/shared/types/feat";
 
+export type AbilityScores =
+  | "strength"
+  | "dexterity"
+  | "constitution"
+  | "intelligence"
+  | "wisdom"
+  | "charisma";
+export const ABILITYSCORES = [
+  "strength",
+  "dexterity",
+  "constitution",
+  "intelligence",
+  "wisdom",
+  "charisma"
+];
+export type Mastery = "trained" | "expert" | "master" | "legend";
+export const MASTERY = ["trained", "expert", "master", "legend"];
+export type Buffs =
+  | "class"
+  | "skill"
+  | "general"
+  | "skill_increase"
+  | "ability_boost"
+  | "ancestory";
+export const BUFFS = [
+  "class",
+  "skill",
+  "general",
+  "skill_increase",
+  "ability_boost",
+  "ancestory"
+];
+
 export class CharacterClass {
   public id!: number;
   public name!: string;
   public baseHp!: number;
-  public primaryAbility!: AbilityScore;
+  public primaryAbility!: AbilityScores;
   public requireDeity!: boolean;
   public additionalSkills!: number;
   public savingThrow!: SavingThrows;
@@ -32,29 +65,4 @@ export class Level {
   public type!: string[];
   public type_feats!: TypeFeat[];
   public features!: Feat[];
-}
-
-export enum AbilityScore {
-  strength = "str",
-  dexterity = "dex",
-  consitution = "con",
-  intelligence = "int",
-  wisdom = "wis",
-  charisma = "cha"
-}
-
-export enum Mastery {
-  trained = "trained",
-  expert = "expert",
-  master = "master",
-  legend = "legend"
-}
-
-export enum Buffs {
-  characterClass = "class",
-  skill = "skill",
-  general = "general",
-  skillIncrease = "skill_increase",
-  abilityBoost = "ability_boost",
-  ancestory = "ancestory"
 }

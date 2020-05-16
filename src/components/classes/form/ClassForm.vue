@@ -2,63 +2,119 @@
   <div class="cls-base">
     <img class="cls-icon" src="https://picsum.photos/200" alt="" />
     <div class="cls-info">
-      <b-field label="Name" custom-class="has-text-light">
+      <b-field horizontal label="Name" custom-class="has-text-light">
         <b-input />
       </b-field>
-      <b-field label="Primary Ability" custom-class="has-text-light">
-        <b-select />
+      <b-field horizontal label="Primary Ability" custom-class="has-text-light">
+        <b-select>
+          <option v-for="as in ABILITYSCORES" :key="as" :value="as">{{
+            as
+          }}</option>
+        </b-select>
       </b-field>
-      <b-field label="Hp" custom-class="has-text-light">
+      <b-field horizontal label="Hp" custom-class="has-text-light">
         <b-input type="number" />
       </b-field>
-      <b-radio type="is-info">Require Deity</b-radio>
-      <b-field label="Additional Skills" custom-class="has-text-light">
+      <b-field horizontal label="Require Deity" custom-class="has-text-light">
+        <b-radio-button native-value="Yep" type="is-success">
+          <i class="ra ra-moon-sun ra-fw ra-2x" />
+        </b-radio-button>
+      </b-field>
+      <b-field
+        horizontal
+        label="Additional Skills"
+        custom-class="has-text-light"
+      >
         <b-input type="number" />
       </b-field>
     </div>
     <div class="cls-info">
-      <b-field label="Fortitude" custom-class="has-text-light">
-        <b-select />
+      <b-field horizontal label="Fortitude" custom-class="has-text-light">
+        <b-select>
+          <option v-for="mastery in MASTERY" :key="mastery" :value="mastery">{{
+            mastery
+          }}</option>
+        </b-select>
       </b-field>
-      <b-field label="Reflex" custom-class="has-text-light">
-        <b-select />
+      <b-field horizontal label="Reflex" custom-class="has-text-light">
+        <b-select>
+          <option v-for="mastery in MASTERY" :key="mastery" :value="mastery">{{
+            mastery
+          }}</option>
+        </b-select>
       </b-field>
-      <b-field label="Will" custom-class="has-text-light">
-        <b-select />
-      </b-field>
-    </div>
-    <div class="cls-info">
-      <b-field label="Skill Name" custom-class="has-text-light">
-        <b-select />
-      </b-field>
-      <b-field label="Skill Level" custom-class="has-text-light">
-        <b-select />
-      </b-field>
-    </div>
-    <div class="cls-info">
-      <b-field label="Skill Name" custom-class="has-text-light">
-        <b-select />
-      </b-field>
-      <b-field label="Skill Level" custom-class="has-text-light">
-        <b-select />
+      <b-field horizontal label="Will" custom-class="has-text-light">
+        <b-select>
+          <option v-for="mastery in MASTERY" :key="mastery" :value="mastery">{{
+            mastery
+          }}</option>
+        </b-select>
       </b-field>
     </div>
     <div class="cls-info">
-      <b-field label="Skill Name" custom-class="has-text-light">
-        <b-select />
+      <b-field grouped>
+        <b-field label="Skills" custom-class="has-text-light" expanded>
+          <b-field>
+            <b-input placeholder="Name" />
+            <b-select placeholder="Mastery">
+              <option
+                v-for="mastery in MASTERY"
+                :key="mastery"
+                :value="mastery"
+                >{{ mastery }}</option
+              >
+            </b-select>
+            <b-button type="is-success" icon-right="plus" />
+          </b-field>
+        </b-field>
       </b-field>
-      <b-field label="Skill Level" custom-class="has-text-light">
-        <b-select />
+    </div>
+    <div class="cls-info">
+      <b-field grouped>
+        <b-field label="Attacks" custom-class="has-text-light" expanded>
+          <b-field>
+            <b-input placeholder="Name" />
+            <b-select placeholder="Mastery">
+              <option
+                v-for="mastery in MASTERY"
+                :key="mastery"
+                :value="mastery"
+                >{{ mastery }}</option
+              >
+            </b-select>
+            <b-button type="is-success" icon-right="plus" />
+          </b-field>
+        </b-field>
+      </b-field>
+    </div>
+    <div class="cls-info">
+      <b-field grouped>
+        <b-field label="Defenses" custom-class="has-text-light" expanded>
+          <b-field>
+            <b-input placeholder="Name" />
+            <b-select placeholder="Mastery">
+              <option
+                v-for="mastery in MASTERY"
+                :key="mastery"
+                :value="mastery"
+                >{{ mastery }}</option
+              >
+            </b-select>
+            <b-button type="is-success" icon-right="plus" />
+          </b-field>
+        </b-field>
       </b-field>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { ABILITYSCORES, MASTERY } from "@/shared/types/class";
+
 export default {
   name: "classForm",
   setup() {
-    return {};
+    return { ABILITYSCORES, MASTERY };
   }
 };
 </script>
@@ -71,6 +127,7 @@ export default {
   background-color: $primary;
   display: flex;
   flex-flow: row;
+  flex-wrap: wrap;
 }
 
 .cls-icon {
