@@ -105,16 +105,26 @@
         </b-field>
       </b-field>
     </div>
+    <b-button type="is-info" @click="isOpen = true">Spells</b-button>
+    <b-modal :active.sync="isOpen" :can-cancel="['x']">
+      <SpellForm />
+    </b-modal>
   </div>
 </template>
 
 <script lang="ts">
+import SpellForm from "@/components/classes/form/SpellForm.vue";
 import { ABILITYSCORES, MASTERY } from "@/shared/types/class";
+import { Ref, ref } from "@vue/composition-api";
 
 export default {
   name: "classForm",
+  components: {
+    SpellForm
+  },
   setup() {
-    return { ABILITYSCORES, MASTERY };
+    const isOpen: Ref<boolean> = ref(false);
+    return { ABILITYSCORES, MASTERY, isOpen };
   }
 };
 </script>
