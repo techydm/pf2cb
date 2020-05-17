@@ -3,13 +3,15 @@
     <!--  Table  -->
     <b-table hoverable bordered :columns="columns" :data="data">
       <template slot="footer">
-        <div class="has-text-right">
-          <b-button @click="isOpen = trues" type="is-info">Add</b-button>
+        <div class="has-text-right buttons">
+          <b-button @click="isOpen = true" type="is-info">Add</b-button>
+          <b-button @click="submit()" type="is-success">Submit</b-button>
+          <b-button @click="cancel()" type="is-danger">Cancel</b-button>
         </div>
       </template>
     </b-table>
     <!--  Modal  -->
-    <b-modal :active.sync="isOpen" can-cancel="false">
+    <b-modal :active.sync="isOpen" :can-cancel="false">
       <div class="spellform-add">
         <div class="is-flex">
           <div
@@ -18,12 +20,12 @@
             :key="spellLevel"
           >
             <b-field custom-class="has-text-light" :label="spellLevel">
-              <b-input />
+              <b-input v-model="spellSlots[spellLevel]" />
             </b-field>
           </div>
         </div>
         <div class="buttons">
-          <b-button type="is-success">Submit</b-button>
+          <b-button @click="addSpells()" type="is-success">Submit</b-button>
           <b-button @click="isOpen = false" type="is-danger">Cancel</b-button>
         </div>
       </div>
@@ -36,8 +38,18 @@ import { Ref, ref } from "@vue/composition-api";
 
 export default {
   name: "SpellForm",
+  props: {
+    cancel: {
+      type: [Function],
+      required: true
+    }
+  },
   setup() {
-    const data = ref([]);
+    // Modal
+    const isOpen: Ref<boolean> = ref(false);
+
+    // Table info
+    const data: Ref<Array<object>> = ref([]);
 
     const headerClass = "is-dark";
     const columns = ref([
@@ -58,7 +70,7 @@ export default {
         headerClass
       },
       {
-        field: "first",
+        field: "1st",
         label: "1st",
         width: "40",
         numeric: true,
@@ -66,7 +78,7 @@ export default {
         headerClass
       },
       {
-        field: "second",
+        field: "2nd",
         label: "2nd",
         width: "40",
         numeric: true,
@@ -74,7 +86,7 @@ export default {
         headerClass
       },
       {
-        field: "third",
+        field: "3rd",
         label: "3rd",
         width: "40",
         numeric: true,
@@ -82,7 +94,7 @@ export default {
         headerClass
       },
       {
-        field: "fourth",
+        field: "4th",
         label: "4th",
         width: "40",
         numeric: true,
@@ -90,7 +102,7 @@ export default {
         headerClass
       },
       {
-        field: "fifth",
+        field: "5th",
         label: "5th",
         width: "40",
         numeric: true,
@@ -98,7 +110,7 @@ export default {
         headerClass
       },
       {
-        field: "sixth",
+        field: "6th",
         label: "6th",
         width: "40",
         numeric: true,
@@ -106,7 +118,7 @@ export default {
         headerClass
       },
       {
-        field: "seventh",
+        field: "7th",
         label: "7th",
         width: "40",
         numeric: true,
@@ -114,7 +126,7 @@ export default {
         headerClass
       },
       {
-        field: "eighth",
+        field: "8th",
         label: "8th",
         width: "40",
         numeric: true,
@@ -122,7 +134,7 @@ export default {
         headerClass
       },
       {
-        field: "ninth",
+        field: "9th",
         label: "9th",
         width: "40",
         numeric: true,
@@ -130,7 +142,7 @@ export default {
         headerClass
       },
       {
-        field: "tenth",
+        field: "10th",
         label: "10th",
         width: "40",
         numeric: true,
@@ -139,24 +151,12 @@ export default {
       }
     ]);
 
-    // Add spells
-    const spellLevels: Ref<string[]> = ref([
-      "1st",
-      "2nd",
-      "3rd",
-      "4th",
-      "5th",
-      "6th",
-      "7th",
-      "8th",
-      "9th",
-      "10th"
-    ]);
+    // Submission function
+    function submit() {
+      isOpen.value = false;
+    }
 
-    // Modal
-    const isOpen: Ref<boolean> = ref(false);
-
-    return { data, columns, isOpen, spellLevels };
+    return { data, columns, isOpen, submit };
   }
 };
 </script>

@@ -106,9 +106,16 @@
       </b-field>
     </div>
     <b-button type="is-info" @click="isOpen = true">Spells</b-button>
-    <b-modal :active.sync="isOpen" :can-cancel="['x']">
-      <SpellForm />
+    <b-modal :active.sync="isOpen" :can-cancel="['outside']">
+      <SpellForm
+        :cancel="
+          () => {
+            isOpen = false;
+          }
+        "
+      />
     </b-modal>
+    {{ spellSlots }}
   </div>
 </template>
 
@@ -124,7 +131,8 @@ export default {
   },
   setup() {
     const isOpen: Ref<boolean> = ref(false);
-    return { ABILITYSCORES, MASTERY, isOpen };
+    const spellSlots: Ref<Array<number[]>> = ref([]);
+    return { ABILITYSCORES, MASTERY, isOpen, spellSlots };
   }
 };
 </script>
