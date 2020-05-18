@@ -30,11 +30,18 @@
         </div>
       </div>
     </b-modal>
+    {{ data }};
   </div>
 </template>
 
 <script lang="ts">
 import { Ref, ref } from "@vue/composition-api";
+import {
+  getTableData,
+  spellLevels,
+  SpellRow,
+  addRow
+} from "@/services/spellForm";
 
 export default {
   name: "SpellForm",
@@ -49,114 +56,30 @@ export default {
     const isOpen: Ref<boolean> = ref(false);
 
     // Table info
-    const data: Ref<Array<object>> = ref([]);
+    const { data, columns } = getTableData();
 
-    const headerClass = "is-dark";
-    const columns = ref([
-      {
-        field: "characterLevel",
-        label: "Character Level",
-        width: "40",
-        numeric: true,
-        centered: true,
-        headerClass
-      },
-      {
-        field: "cantrips",
-        label: "Cantrips",
-        width: "40",
-        numeric: true,
-        centered: true,
-        headerClass
-      },
-      {
-        field: "1st",
-        label: "1st",
-        width: "40",
-        numeric: true,
-        centered: true,
-        headerClass
-      },
-      {
-        field: "2nd",
-        label: "2nd",
-        width: "40",
-        numeric: true,
-        centered: true,
-        headerClass
-      },
-      {
-        field: "3rd",
-        label: "3rd",
-        width: "40",
-        numeric: true,
-        centered: true,
-        headerClass
-      },
-      {
-        field: "4th",
-        label: "4th",
-        width: "40",
-        numeric: true,
-        centered: true,
-        headerClass
-      },
-      {
-        field: "5th",
-        label: "5th",
-        width: "40",
-        numeric: true,
-        centered: true,
-        headerClass
-      },
-      {
-        field: "6th",
-        label: "6th",
-        width: "40",
-        numeric: true,
-        centered: true,
-        headerClass
-      },
-      {
-        field: "7th",
-        label: "7th",
-        width: "40",
-        numeric: true,
-        centered: true,
-        headerClass
-      },
-      {
-        field: "8th",
-        label: "8th",
-        width: "40",
-        numeric: true,
-        centered: true,
-        headerClass
-      },
-      {
-        field: "9th",
-        label: "9th",
-        width: "40",
-        numeric: true,
-        centered: true,
-        headerClass
-      },
-      {
-        field: "10th",
-        label: "10th",
-        width: "40",
-        numeric: true,
-        centered: true,
-        headerClass
-      }
-    ]);
+    // Temp
+    const spellSlots: Ref<any> = ref(new SpellRow());
+    function addSpells() {
+      addRow(spellSlots.value);
+      spellSlots.value = new SpellRow();
+      isOpen.value = false;
+    }
 
     // Submission function
     function submit() {
       isOpen.value = false;
     }
 
-    return { data, columns, isOpen, submit };
+    return {
+      data,
+      columns,
+      spellLevels,
+      isOpen,
+      spellSlots,
+      submit,
+      addSpells
+    };
   }
 };
 </script>
