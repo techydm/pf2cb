@@ -30,7 +30,6 @@
         </div>
       </div>
     </b-modal>
-    {{ data }};
   </div>
 </template>
 
@@ -59,7 +58,7 @@ export default {
     const { data, columns } = getTableData();
 
     // Temp
-    const spellSlots: Ref<any> = ref(new SpellRow());
+    const spellSlots: Ref<SpellRow> = ref(new SpellRow());
     function addSpells() {
       addRow(spellSlots.value);
       spellSlots.value = new SpellRow();

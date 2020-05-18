@@ -16,7 +16,6 @@ export class SpellRow {
   "10th": number = 0;
   [key: string]: number;
 }
-
 export class DspSpellRow {
   characterLevel: number = 0;
   cantrips: string = "";
