@@ -32,7 +32,7 @@ export class DspSpellRow {
   [key: string]: string | number;
 }
 
-// Variables
+// Store
 const tableData: Ref<Array<DspSpellRow>> = ref([]);
 const headerClass: string = "is-dark";
 const columns: Ref<Array<object>> = ref([
@@ -152,18 +152,18 @@ export function getTableData() {
   return { data: tableData, columns };
 }
 
-export function addRow(slots: SpellRow) {
+export function addRow(slot: SpellRow) {
   // Variable to transform SpellRow (numbers) to DspSpellRow (strings)
   const newRow: DspSpellRow = new DspSpellRow();
 
   // First Instance
   if (tableData.value.length === 0) {
-    for (const key in slots) {
+    for (const key in slot) {
       if (key !== "characterLevel") {
-        if (slots[key] === 0) {
+        if (slot[key] === 0) {
           newRow[key] = "-";
         } else {
-          newRow[key] = slots[key];
+          newRow[key] = slot[key];
         }
       }
     }
@@ -174,12 +174,12 @@ export function addRow(slots: SpellRow) {
 
   const previousValues: DspSpellRow =
     tableData.value[tableData.value.length - 1];
-  for (const key in slots) {
+  for (const key in slot) {
     if (key !== "characterLevel") {
-      if (slots[key] === 0) {
+      if (slot[key] === 0) {
         newRow[key] = previousValues[key];
       } else {
-        newRow[key] = slots[key];
+        newRow[key] = slot[key];
       }
     }
   }

@@ -33,21 +33,6 @@ export const BUFFS = [
   "ancestory"
 ];
 
-export class CharacterClass {
-  public id!: number;
-  public name!: string;
-  public baseHp!: number;
-  public primaryAbility!: AbilityScores;
-  public requireDeity!: boolean;
-  public additionalSkills!: number;
-  public savingThrow!: SavingThrows;
-  public skills!: Skill[];
-  public attacks!: Skill[];
-  public defense!: Skill[];
-  public spellSlots!: Array<number[]>;
-  public levels!: Level[];
-}
-
 export class SavingThrows {
   public fortitude!: Mastery;
   public reflex!: Mastery;
@@ -65,4 +50,19 @@ export class Level {
   public type!: string[];
   public type_feats!: TypeFeat[];
   public features!: Feat[];
+}
+
+export class CharacterClass {
+  public id: number = 0;
+  public name: string = "";
+  public baseHp: number = 0;
+  public primaryAbility!: AbilityScores;
+  public requireDeity: boolean = false;
+  public additionalSkills: number = 0;
+  public savingThrow: SavingThrows = new SavingThrows();
+  public skills: Skill[] = [];
+  public attacks: Skill[] = [];
+  public defense: Skill[] = [];
+  public spellSlots: Array<number[]> = [];
+  public levels: Level[] = [];
 }

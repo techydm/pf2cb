@@ -2,49 +2,49 @@
   <div class="cls-base">
     <img class="cls-icon" src="https://picsum.photos/200" alt="" />
     <div class="cls-info">
-      <b-field horizontal label="Name" custom-class="has-text-light">
-        <b-input />
+      <b-field label="Name" custom-class="has-text-light">
+        <b-input v-model="cls.name" />
       </b-field>
-      <b-field horizontal label="Primary Ability" custom-class="has-text-light">
-        <b-select>
+      <b-field label="Primary Ability" custom-class="has-text-light">
+        <b-select v-model="cls.primaryAbility">
           <option v-for="as in ABILITYSCORES" :key="as" :value="as">{{
             as
           }}</option>
         </b-select>
       </b-field>
-      <b-field horizontal label="Hp" custom-class="has-text-light">
-        <b-input type="number" />
+      <b-field label="Hp" custom-class="has-text-light">
+        <b-input v-model="cls.baseHp" type="number" />
       </b-field>
-      <b-field horizontal label="Require Deity" custom-class="has-text-light">
-        <b-radio-button native-value="Yep" type="is-success">
+      <b-field label="Require Deity" custom-class="has-text-light">
+        <b-radio-button
+          v-model="cls.requireDeity"
+          native-value="true"
+          type="is-success"
+        >
           <i class="ra ra-moon-sun ra-fw ra-2x" />
         </b-radio-button>
       </b-field>
-      <b-field
-        horizontal
-        label="Additional Skills"
-        custom-class="has-text-light"
-      >
-        <b-input type="number" />
+      <b-field label="Additional Skills" custom-class="has-text-light">
+        <b-input v-model="cls.additionalSkills" type="number" />
       </b-field>
     </div>
     <div class="cls-info">
-      <b-field horizontal label="Fortitude" custom-class="has-text-light">
-        <b-select>
+      <b-field label="Fortitude" custom-class="has-text-light">
+        <b-select v-model="cls.savingThrow.fortitude">
           <option v-for="mastery in MASTERY" :key="mastery" :value="mastery">{{
             mastery
           }}</option>
         </b-select>
       </b-field>
-      <b-field horizontal label="Reflex" custom-class="has-text-light">
-        <b-select>
+      <b-field label="Reflex" custom-class="has-text-light">
+        <b-select v-model="cls.savingThrow.reflex">
           <option v-for="mastery in MASTERY" :key="mastery" :value="mastery">{{
             mastery
           }}</option>
         </b-select>
       </b-field>
-      <b-field horizontal label="Will" custom-class="has-text-light">
-        <b-select>
+      <b-field label="Will" custom-class="has-text-light">
+        <b-select v-model="cls.savingThrow.will">
           <option v-for="mastery in MASTERY" :key="mastery" :value="mastery">{{
             mastery
           }}</option>
@@ -68,8 +68,6 @@
           </b-field>
         </b-field>
       </b-field>
-    </div>
-    <div class="cls-info">
       <b-field grouped>
         <b-field label="Attacks" custom-class="has-text-light" expanded>
           <b-field>
@@ -86,8 +84,6 @@
           </b-field>
         </b-field>
       </b-field>
-    </div>
-    <div class="cls-info">
       <b-field grouped>
         <b-field label="Defenses" custom-class="has-text-light" expanded>
           <b-field>
@@ -115,14 +111,17 @@
         "
       />
     </b-modal>
-    {{ spellSlots }}
+    <div>
+      {{ cls }}
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import SpellForm from "@/components/classes/form/SpellForm.vue";
-import { ABILITYSCORES, MASTERY } from "@/shared/types/class";
+import { ABILITYSCORES, CharacterClass, MASTERY } from "@/shared/types/class";
 import { Ref, ref } from "@vue/composition-api";
+import { newClass } from "@/services/classes";
 
 export default {
   name: "classForm",
@@ -130,9 +129,9 @@ export default {
     SpellForm
   },
   setup() {
+    const cls: Ref<CharacterClass> = newClass();
     const isOpen: Ref<boolean> = ref(false);
-    const spellSlots: Ref<Array<number[]>> = ref([]);
-    return { ABILITYSCORES, MASTERY, isOpen, spellSlots };
+    return { cls, ABILITYSCORES, MASTERY, isOpen };
   }
 };
 </script>

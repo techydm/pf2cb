@@ -41,6 +41,7 @@ import {
   SpellRow,
   addRow
 } from "@/services/spellForm";
+import { addSpellSlots } from "@/services/classes";
 
 export default {
   name: "SpellForm",
@@ -50,7 +51,7 @@ export default {
       required: true
     }
   },
-  setup() {
+  setup(props: any) {
     // Modal
     const isOpen: Ref<boolean> = ref(false);
 
@@ -67,7 +68,8 @@ export default {
 
     // Submission function
     function submit() {
-      isOpen.value = false;
+      addSpellSlots(data.value);
+      props.cancel();
     }
 
     return {

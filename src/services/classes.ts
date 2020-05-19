@@ -1,6 +1,36 @@
 import { CharacterClass } from "@/shared/types/class";
+import { ref, Ref } from "@vue/composition-api";
+import { DspSpellRow } from "@/services/spellForm";
 
+// Store
+export const classes: Ref<Array<CharacterClass>> = ref([]);
+export const workingClass: Ref<CharacterClass> = ref({});
+
+// Functions
 export function newClass() {
-  const cls: CharacterClass = new CharacterClass();
-  cls.primaryAbility = "strength";
+  workingClass.value = new CharacterClass();
+  return workingClass;
+}
+
+export function addSpellSlots(dspSlots: DspSpellRow[]) {
+  const slots: Array<number[]> = dspSlots.map((slot: DspSpellRow) => {
+    const level: number[] = [];
+    for (const key in slot) {
+      if (key !== "characterLevel") {
+        if (slot[key] === "-") {
+          level.push(0);
+        } else {
+          level.push(parseInt(`${slot[key]}`));
+        }
+      }
+    }
+    return level;
+  });
+
+  workingClass.value.spellSlots = slots;
+  return;
+}
+
+export function addClass(cls: CharacterClass) {
+  classes.value.push(cls);
 }
