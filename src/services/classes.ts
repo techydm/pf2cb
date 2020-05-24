@@ -1,4 +1,4 @@
-import { CharacterClass } from "@/shared/types/class";
+import { CharacterClass, Skill } from "@/shared/types/class";
 import { ref, Ref } from "@vue/composition-api";
 import { DspSpellRow } from "@/services/spellForm";
 
@@ -33,4 +33,19 @@ export function addSpellSlots(dspSlots: DspSpellRow[]) {
 
 export function addClass(cls: CharacterClass) {
   classes.value.push(cls);
+}
+
+export function addSkill(skill: Skill) {
+  workingClass.value.skills.push(skill);
+  return;
+}
+
+export function addAttack(attack: Skill) {
+  workingClass.value.attacks.push(attack);
+  return;
+}
+
+export function addDefense(defence: Skill) {
+  workingClass.value.defense.push(defence);
+  return;
 }

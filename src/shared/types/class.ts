@@ -40,16 +40,16 @@ export class SavingThrows {
 }
 
 export class Skill {
-  public name!: string;
+  public name: string = "";
   public level!: Mastery;
 }
 
 export class Level {
-  public level!: number;
+  public level: number = 0;
   public buffs!: Buffs;
-  public type!: string[];
-  public type_feats!: TypeFeat[];
-  public features!: Feat[];
+  public type: string[] = [];
+  public type_feats: TypeFeat[] = [];
+  public features: Feat[] = [];
 }
 
 export class CharacterClass {

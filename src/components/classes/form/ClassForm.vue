@@ -55,8 +55,8 @@
       <b-field grouped>
         <b-field label="Skills" custom-class="has-text-light" expanded>
           <b-field>
-            <b-input placeholder="Name" />
-            <b-select placeholder="Mastery">
+            <b-input v-model="skill.name" placeholder="Name" />
+            <b-select v-model="skill.level" placeholder="Mastery">
               <option
                 v-for="mastery in MASTERY"
                 :key="mastery"
@@ -64,15 +64,19 @@
                 >{{ mastery }}</option
               >
             </b-select>
-            <b-button type="is-success" icon-right="plus" />
+            <b-button
+              type="is-success"
+              icon-right="plus"
+              @click="addSkills('skill')"
+            />
           </b-field>
         </b-field>
       </b-field>
       <b-field grouped>
         <b-field label="Attacks" custom-class="has-text-light" expanded>
           <b-field>
-            <b-input placeholder="Name" />
-            <b-select placeholder="Mastery">
+            <b-input v-model="attack.name" placeholder="Name" />
+            <b-select v-model="attack.level" placeholder="Mastery">
               <option
                 v-for="mastery in MASTERY"
                 :key="mastery"
@@ -80,15 +84,19 @@
                 >{{ mastery }}</option
               >
             </b-select>
-            <b-button type="is-success" icon-right="plus" />
+            <b-button
+              type="is-success"
+              icon-right="plus"
+              @click="addSkills('attack')"
+            />
           </b-field>
         </b-field>
       </b-field>
       <b-field grouped>
         <b-field label="Defenses" custom-class="has-text-light" expanded>
           <b-field>
-            <b-input placeholder="Name" />
-            <b-select placeholder="Mastery">
+            <b-input v-model="defense.name" placeholder="Name" />
+            <b-select v-model="defense.level" placeholder="Mastery">
               <option
                 v-for="mastery in MASTERY"
                 :key="mastery"
@@ -96,7 +104,11 @@
                 >{{ mastery }}</option
               >
             </b-select>
-            <b-button type="is-success" icon-right="plus" />
+            <b-button
+              type="is-success"
+              icon-right="plus"
+              @click="addSkills('defense')"
+            />
           </b-field>
         </b-field>
       </b-field>
@@ -114,14 +126,23 @@
     <div>
       {{ cls }}
     </div>
+    <div class="buttons">
+      <b-button type="is-success">Submit</b-button>
+      <b-button type="is-danger">Cancel</b-button>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import SpellForm from "@/components/classes/form/SpellForm.vue";
-import { ABILITYSCORES, CharacterClass, MASTERY } from "@/shared/types/class";
+import {
+  ABILITYSCORES,
+  CharacterClass,
+  MASTERY,
+  Skill
+} from "@/shared/types/class";
 import { Ref, ref } from "@vue/composition-api";
-import { newClass } from "@/services/classes";
+import { addAttack, addDefense, addSkill, newClass } from "@/services/classes";
 
 export default {
   name: "classForm",
@@ -131,7 +152,41 @@ export default {
   setup() {
     const cls: Ref<CharacterClass> = newClass();
     const isOpen: Ref<boolean> = ref(false);
-    return { cls, ABILITYSCORES, MASTERY, isOpen };
+
+    const skill: Ref<Skill> = ref(new Skill());
+    const attack: Ref<Skill> = ref(new Skill());
+    const defense: Ref<Skill> = ref(new Skill());
+
+    function addSkills(type: string) {
+      switch (type) {
+        case "skill": {
+          addSkill(skill.value);
+          skill.value = new Skill();
+          break;
+        }
+        case "attack": {
+          addAttack(attack.value);
+          attack.value = new Skill();
+          break;
+        }
+        case "defense": {
+          addDefense(defense.value);
+          defense.value = new Skill();
+          break;
+        }
+      }
+    }
+
+    return {
+      cls,
+      ABILITYSCORES,
+      MASTERY,
+      isOpen,
+      skill,
+      attack,
+      defense: defense,
+      addSkills
+    };
   }
 };
 </script>

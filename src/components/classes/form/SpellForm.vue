@@ -43,6 +43,10 @@ import {
 } from "@/services/spellForm";
 import { addSpellSlots } from "@/services/classes";
 
+interface SpellFormProp {
+  cancel: Function;
+}
+
 export default {
   name: "SpellForm",
   props: {
@@ -51,7 +55,7 @@ export default {
       required: true
     }
   },
-  setup(props: any) {
+  setup(props: SpellFormProp) {
     // Modal
     const isOpen: Ref<boolean> = ref(false);
 
