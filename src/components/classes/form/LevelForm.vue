@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="has-background-primary">
     <!--   Level     -->
     <h1>Level: {{ level }}</h1>
     <!--   Buffs     -->
@@ -8,36 +8,26 @@
         <h1>Buffs</h1>
         <b-icon icon="menu-down"></b-icon>
       </button>
-
-      <b-dropdown-item value="option1" aria-role="listitem">
-        <span>Option 1</span>
-      </b-dropdown-item>
-
-      <b-dropdown-item value="option2" aria-role="listitem">
-        <span>Option 2</span>
-      </b-dropdown-item>
-
-      <b-dropdown-item value="option3" aria-role="listitem">
-        <span>Option 3</span>
+      <b-dropdown-item
+        v-for="buff in BUFFS"
+        :key="buff"
+        :value="buff"
+        aria-role="listitem"
+      >
+        <span>{{ buff }}</span>
       </b-dropdown-item>
     </b-dropdown>
     <!--   Features  -->
-    <div>
-      <b-field grouped>
-        <b-field label="Class Feature" custom-class="has-text-light" expanded>
-          <b-field>
-            <b-input placeholder="Name" />
-            <b-input
-              type="textarea"
-              minlength="10"
-              maxlength="100"
-              placeholder="Descripiton"
-            >
-            </b-input>
-            <b-button type="is-success" icon-right="plus" />
-          </b-field>
-        </b-field>
-      </b-field>
+    <div class="feature">
+      <div>Class Feature</div>
+      <b-input placeholder="Name" />
+      <b-input
+        type="textarea"
+        minlength="10"
+        maxlength="100"
+        placeholder="Descripiton"
+      />
+      <b-button type="is-success" icon-right="plus" />
     </div>
     <!--   Buttons   -->
     <div class="buttons">
@@ -49,17 +39,23 @@
 
 <script lang="ts">
 import { Ref, ref } from "@vue/composition-api";
+import { BUFFS } from "@/shared/types/class";
 
 export default {
   name: "LevelForm",
   setup() {
     const level: Ref<number> = ref(1);
 
-    return { level };
+    return { level, BUFFS };
   }
 };
 </script>
 
 <style scoped lang="scss">
 @import "../../../assets/styles";
+.feature {
+  display: flex;
+  flex-flow: nowrap column;
+  width: 40%;
+}
 </style>

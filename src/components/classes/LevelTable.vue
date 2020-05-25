@@ -1,9 +1,17 @@
 <template>
   <div>
     <!--  Table  -->
-    <b-table bordered :columns="columns" :data="data" />
+    <b-table bordered :columns="columns" :data="data">
+      <template slot="footer">
+        <div class="has-text-right">
+          <b-button @click="isOpen = true" type="is-info">Add</b-button>
+        </div>
+      </template>
+    </b-table>
     <!--   Modal     -->
-    <LevelForm />
+    <b-modal :active.sync="isOpen" :can-cancel="['x']">
+      <LevelForm />
+    </b-modal>
   </div>
 </template>
 
@@ -36,9 +44,12 @@ export default {
       }
     ]);
 
+    const isOpen: Ref<boolean> = ref(false);
+
     return {
       data,
-      columns
+      columns,
+      isOpen
     };
   }
 };
