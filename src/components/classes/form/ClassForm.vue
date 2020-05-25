@@ -1,6 +1,8 @@
 <template>
   <div class="cls-base">
+    <!--  Icon  -->
     <img class="cls-icon" src="https://picsum.photos/200" alt="" />
+    <!--  General Info  -->
     <div class="cls-info">
       <b-field label="Name" custom-class="has-text-light">
         <b-input v-model="cls.name" />
@@ -28,6 +30,7 @@
         <b-input v-model="cls.additionalSkills" type="number" />
       </b-field>
     </div>
+    <!--  Saving Throws  -->
     <div class="cls-info">
       <b-field label="Fortitude" custom-class="has-text-light">
         <b-select v-model="cls.savingThrow.fortitude">
@@ -51,6 +54,7 @@
         </b-select>
       </b-field>
     </div>
+    <!--  Skills  -->
     <div class="cls-info">
       <b-field grouped>
         <b-field label="Skills" custom-class="has-text-light" expanded>
@@ -113,19 +117,28 @@
         </b-field>
       </b-field>
     </div>
-    <b-button type="is-info" @click="isOpen = true">Spells</b-button>
-    <b-modal :active.sync="isOpen" :can-cancel="['outside']">
-      <SpellForm
-        :cancel="
-          () => {
-            isOpen = false;
-          }
-        "
-      />
-    </b-modal>
+    <!--  Spells  -->
+    <div class="cls-info">
+      <b-button type="is-info" @click="isOpen = true">Spells</b-button>
+      <b-modal :active.sync="isOpen" :can-cancel="false">
+        <SpellForm
+          :cancel="
+            () => {
+              isOpen = false;
+            }
+          "
+        />
+      </b-modal>
+    </div>
+    <!--  Levels  -->
+    <div class="cls-info">
+      <LevelTable />
+    </div>
+    <!--  Temp: Class Info  -->
     <div>
       {{ cls }}
     </div>
+    <!--  Action Buttons  -->
     <div class="buttons">
       <b-button type="is-success">Submit</b-button>
       <b-button type="is-danger">Cancel</b-button>
@@ -135,6 +148,7 @@
 
 <script lang="ts">
 import SpellForm from "@/components/classes/form/SpellForm.vue";
+import LevelTable from "@/components/classes/LevelTable.vue";
 import {
   ABILITYSCORES,
   CharacterClass,
@@ -147,7 +161,8 @@ import { addAttack, addDefense, addSkill, newClass } from "@/services/classes";
 export default {
   name: "classForm",
   components: {
-    SpellForm
+    SpellForm,
+    LevelTable
   },
   setup() {
     const cls: Ref<CharacterClass> = newClass();
@@ -195,7 +210,7 @@ export default {
 @import "../../../assets/styles";
 
 .cls-base {
-  border-radius: 2.5rem;
+  height: 100%;
   background-color: $primary;
   display: flex;
   flex-flow: row;

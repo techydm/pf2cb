@@ -20,7 +20,7 @@
       <i class="ra ra-forging ra-fw ra-3x" />
     </b-button>
     <!--  Modal  -->
-    <b-modal :active.sync="isOpen" :can-cancel="['x']">
+    <b-modal full-screen :active.sync="isOpen" :can-cancel="['x']">
       <ClassForm />
     </b-modal>
   </div>

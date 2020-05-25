@@ -1,4 +1,4 @@
-import { Feat, TypeFeat } from "@/shared/types/feat";
+import { Feat } from "@/shared/types/feat";
 
 export type AbilityScores =
   | "strength"
@@ -44,12 +44,16 @@ export class Skill {
   public level!: Mastery;
 }
 
+export class ClassFeature {
+  public name: string = "";
+  public tags: Array<string> = [];
+  public description: string = "";
+}
+
 export class Level {
   public level: number = 0;
-  public buffs!: Buffs;
-  public type: string[] = [];
-  public type_feats: TypeFeat[] = [];
-  public features: Feat[] = [];
+  public buffs: Array<Buffs> = [];
+  public features: Array<ClassFeature> = [];
 }
 
 export class CharacterClass {
