@@ -1,5 +1,3 @@
-import { Feat } from "@/shared/types/feat";
-
 export type AbilityScores =
   | "strength"
   | "dexterity"

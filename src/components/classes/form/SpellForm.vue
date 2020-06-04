@@ -3,7 +3,7 @@
     <!--  Table  -->
     <b-table hoverable bordered :columns="columns" :data="data">
       <template slot="footer">
-        <div class="has-text-right buttons">
+        <div class="buttons is-pulled-right">
           <b-button @click="isOpen = true" type="is-info">Add</b-button>
           <b-button @click="submit()" type="is-success">Submit</b-button>
           <b-button @click="cancel()" type="is-danger">Cancel</b-button>
@@ -24,7 +24,7 @@
             </b-field>
           </div>
         </div>
-        <div class="buttons">
+        <div class="buttons is-pulled-right">
           <b-button @click="addSpells()" type="is-success">Submit</b-button>
           <b-button @click="isOpen = false" type="is-danger">Cancel</b-button>
         </div>
@@ -92,6 +92,7 @@ export default {
 <style scoped lang="scss">
 @import "../../../assets/styles";
 .spellform-add {
+  height: 10rem;
   background-color: $primary;
   padding: 1rem;
   border-radius: 2rem;
