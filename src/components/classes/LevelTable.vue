@@ -18,6 +18,7 @@
 <script lang="ts">
 import LevelForm from "@/components/classes/form/LevelForm.vue";
 import { Ref, ref } from "@vue/composition-api";
+import { getWorkingClass } from "@/services/classes";
 
 export default {
   name: "LevelTable",
@@ -26,10 +27,10 @@ export default {
   },
   setup() {
     // Table info
-    const data: Ref<Array<object>> = ref([]);
+    const data: Ref<Array<object>> = ref(getWorkingClass().value.levels);
     const columns: Ref<Array<object>> = ref([
       {
-        field: "characterLevel",
+        field: "level",
         label: "Character Level",
         width: "40",
         numeric: true,
@@ -37,7 +38,7 @@ export default {
         headerClass: "is-dark"
       },
       {
-        field: "classFeatures",
+        field: "buffs",
         label: "Class Features",
         width: "400",
         headerClass: "is-dark"
