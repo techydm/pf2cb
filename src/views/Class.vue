@@ -20,8 +20,8 @@
       <i class="ra ra-forging ra-fw ra-3x" />
     </b-button>
     <!--  Modal  -->
-    <b-modal full-screen :active.sync="isOpen" :can-cancel="['x']">
-      <ClassForm />
+    <b-modal full-screen :active.sync="isOpen" :can-cancel="false">
+      <ClassForm :cancel="close" />
     </b-modal>
   </div>
 </template>
@@ -40,7 +40,11 @@ export default {
   setup() {
     const isOpen: Ref<boolean> = ref(false);
 
-    return { isOpen };
+    function close() {
+      isOpen.value = false;
+    }
+
+    return { isOpen, close };
   }
 };
 </script>

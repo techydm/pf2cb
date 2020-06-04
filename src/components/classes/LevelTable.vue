@@ -9,8 +9,8 @@
       </template>
     </b-table>
     <!--   Modal     -->
-    <b-modal :active.sync="isOpen" :can-cancel="['x']">
-      <LevelForm />
+    <b-modal :active.sync="isOpen" :can-cancel="false">
+      <LevelForm :cancel="close" />
     </b-modal>
   </div>
 </template>
@@ -46,10 +46,15 @@ export default {
 
     const isOpen: Ref<boolean> = ref(false);
 
+    function close() {
+      isOpen.value = false;
+    }
+
     return {
       data,
       columns,
-      isOpen
+      isOpen,
+      close
     };
   }
 };

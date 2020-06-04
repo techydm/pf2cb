@@ -44,7 +44,7 @@
     <!--   Buttons   -->
     <div class="buttons is-pulled-right">
       <b-button type="is-success">Submit</b-button>
-      <b-button type="is-danger">Cancel</b-button>
+      <b-button @click="cancel()" type="is-danger">Cancel</b-button>
     </div>
   </div>
 </template>
@@ -53,8 +53,18 @@
 import { Ref, ref } from "@vue/composition-api";
 import { BUFFS, ClassFeature } from "@/shared/types/class";
 
+interface LevelFormProps {
+  cancel: Function;
+}
+
 export default {
   name: "LevelForm",
+  props: {
+    cancel: {
+      type: [Function],
+      required: true
+    }
+  },
   setup() {
     const level: Ref<number> = ref(1);
 

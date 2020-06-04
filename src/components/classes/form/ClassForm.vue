@@ -131,13 +131,7 @@
       <div class="cls-info">
         <b-button type="is-info" @click="isOpen = true">Spells</b-button>
         <b-modal :active.sync="isOpen" :can-cancel="false">
-          <SpellForm
-            :cancel="
-              () => {
-                isOpen = false;
-              }
-            "
-          />
+          <SpellForm :cancel="close" />
         </b-modal>
       </div>
       <!--  Levels  -->
@@ -152,7 +146,7 @@
     <!--  Action Buttons  -->
     <div class="buttons is-pulled-right">
       <b-button type="is-success">Submit</b-button>
-      <b-button type="is-danger">Cancel</b-button>
+      <b-button @click="cancel()" type="is-danger">Cancel</b-button>
     </div>
   </div>
 </template>
@@ -169,11 +163,21 @@ import {
 import { Ref, ref } from "@vue/composition-api";
 import { addAttack, addDefense, addSkill, newClass } from "@/services/classes";
 
+interface ClassFormProps {
+  cancel: Function;
+}
+
 export default {
   name: "classForm",
   components: {
     SpellForm,
     LevelTable
+  },
+  props: {
+    cancel: {
+      type: [Function],
+      required: true
+    }
   },
   setup() {
     const cls: Ref<CharacterClass> = newClass();
@@ -203,6 +207,10 @@ export default {
       }
     }
 
+    function close() {
+      isOpen.value = false;
+    }
+
     return {
       cls,
       ABILITYSCORES,
@@ -211,7 +219,8 @@ export default {
       skill,
       attack,
       defense: defense,
-      addSkills
+      addSkills,
+      close
     };
   }
 };
