@@ -23,12 +23,12 @@ export type Buffs =
   | "ability_boost"
   | "ancestory";
 export const BUFFS = [
-  "class",
-  "skill",
-  "general",
-  "skill_increase",
-  "ability_boost",
-  "ancestory"
+  { key: "class", value: "class" },
+  { key: "skill", value: "skill" },
+  { key: "general", value: "general" },
+  { key: "skill increase", value: "skill_increase" },
+  { key: "ability boost", value: "ability_boost" },
+  { key: "ancestory", value: "ancestory" }
 ];
 
 export class SavingThrows {

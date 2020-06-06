@@ -13,12 +13,12 @@
           </button>
           <b-dropdown-item
             v-for="buff in BUFFS"
-            :key="buff"
-            :value="buff"
-            @click="levelBuffs(buff)"
+            :key="buff.value"
+            :value="buff.value"
+            @click="levelBuffs(buff.key)"
             aria-role="listitem"
           >
-            <span>{{ buff }}</span>
+            <span>{{ buff.key }}</span>
           </b-dropdown-item>
         </b-dropdown>
         <!--   Features  -->
@@ -43,7 +43,7 @@
     </div>
     <!--   Buttons   -->
     <div class="buttons is-pulled-right">
-      <b-button type="is-success">Submit</b-button>
+      <b-button @click="submit()" type="is-success">Submit</b-button>
       <b-button @click="cancel()" type="is-danger">Cancel</b-button>
     </div>
   </div>
@@ -51,7 +51,8 @@
 
 <script lang="ts">
 import { Ref, ref } from "@vue/composition-api";
-import { BUFFS, ClassFeature } from "@/shared/types/class";
+import { Buffs, BUFFS, ClassFeature, Level } from "@/shared/types/class";
+import { addLevel, getNextLevel } from "@/services/classes";
 
 interface LevelFormProps {
   cancel: Function;
@@ -65,12 +66,12 @@ export default {
       required: true
     }
   },
-  setup() {
-    const level: Ref<number> = ref(1);
+  setup(props: LevelFormProps) {
+    const level: Ref<number> = ref(getNextLevel());
 
     // Buffs
-    const bffs: Ref<Array<string>> = ref([]);
-    function levelBuffs(buff: string) {
+    const bffs: Ref<Array<Buffs>> = ref([]);
+    function addBuffs(buff: Buffs) {
       if (bffs.value.indexOf(buff) === -1) {
         bffs.value.push(buff);
       } else {
@@ -85,7 +86,26 @@ export default {
       feature.value = new ClassFeature();
     }
 
-    return { level, BUFFS, bffs, levelBuffs, feature, features, addFeature };
+    function submit() {
+      const lvl = new Level();
+      lvl.level = level.value;
+      lvl.buffs = bffs.value;
+      lvl.features = features.value;
+
+      addLevel(lvl);
+      props.cancel();
+    }
+
+    return {
+      level,
+      BUFFS,
+      bffs,
+      addBuffs,
+      feature,
+      features,
+      addFeature,
+      submit
+    };
   }
 };
 </script>

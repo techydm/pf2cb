@@ -1,4 +1,4 @@
-import { CharacterClass, Skill } from "@/shared/types/class";
+import { CharacterClass, Level, Skill } from "@/shared/types/class";
 import { ref, Ref } from "@vue/composition-api";
 import { DspSpellRow } from "@/services/spellForm";
 
@@ -9,6 +9,10 @@ export const workingClass: Ref<CharacterClass> = ref({});
 // Functions
 export function newClass() {
   workingClass.value = new CharacterClass();
+  return workingClass;
+}
+
+export function getWorkingClass() {
   return workingClass;
 }
 
@@ -48,4 +52,12 @@ export function addAttack(attack: Skill) {
 export function addDefense(defence: Skill) {
   workingClass.value.defense.push(defence);
   return;
+}
+
+export function getNextLevel() {
+  return workingClass.value.levels.length + 1;
+}
+
+export function addLevel(lvl: Level) {
+  workingClass.value.levels.push(lvl);
 }
