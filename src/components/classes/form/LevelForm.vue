@@ -13,12 +13,12 @@
           </button>
           <b-dropdown-item
             v-for="buff in BUFFS"
-            :key="buff"
-            :value="buff"
-            @click="addBuffs(buff)"
+            :key="buff.value"
+            :value="buff.value"
+            @click="levelBuffs(buff.key)"
             aria-role="listitem"
           >
-            <span>{{ buff }}</span>
+            <span>{{ buff.key }}</span>
           </b-dropdown-item>
         </b-dropdown>
         <!--   Features  -->
