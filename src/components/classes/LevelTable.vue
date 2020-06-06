@@ -38,7 +38,7 @@ export default {
         headerClass: "is-dark"
       },
       {
-        field: "buffs",
+        field: "classFeatures",
         label: "Class Features",
         width: "400",
         headerClass: "is-dark"
