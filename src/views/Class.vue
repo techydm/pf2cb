@@ -1,15 +1,8 @@
 <template>
   <div class="container">
     <h1 class="title has-text-light">Classes</h1>
-    <div class="classes-layout">
-      <ClassCard class="class-card" />
-      <ClassCard class="class-card" />
-      <ClassCard class="class-card" />
-      <ClassCard class="class-card" />
-      <ClassCard class="class-card" />
-      <ClassCard class="class-card" />
-      <ClassCard class="class-card" />
-      <ClassCard class="class-card" />
+    <div class="classes-layout" v-for="cls in classes" :key="cls.name">
+      <ClassCard :cls="cls" class="class-card" />
     </div>
     <b-button
       type="is-info"
@@ -28,6 +21,7 @@
 
 <script lang="ts">
 import { Ref, ref } from "@vue/composition-api";
+import { classes } from "@/services/classes";
 import ClassCard from "@/components/classes/ClassCard.vue";
 import ClassForm from "@/components/classes/form/ClassForm.vue";
 
@@ -44,7 +38,7 @@ export default {
       isOpen.value = false;
     }
 
-    return { isOpen, close };
+    return { isOpen, classes, close };
   }
 };
 </script>

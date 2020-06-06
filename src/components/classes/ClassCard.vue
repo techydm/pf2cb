@@ -2,18 +2,25 @@
   <div class="cls-base">
     <img class="cls-icon" src="https://picsum.photos/200" alt="" />
     <div class="cls-info">
-      <div>Name:</div>
-      <div>Primary Ability:</div>
-      <div>Hp:</div>
-      <div>Spellcaster:</div>
+      <div>Name: {{ cls.name }}</div>
+      <div>Primary Ability: {{ cls.primaryAbility }}</div>
+      <div>Hp: {{ cls.baseHp }}</div>
+      <div>Spellcaster: {{ cls.spellSlots.length > 0 }}</div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { CharacterClass } from "@/shared/types/class";
+
 export default {
   name: "classCard",
-  props: ["cls"],
+  props: {
+    cls: {
+      type: [CharacterClass],
+      required: true
+    }
+  },
   setup() {
     return {};
   }
