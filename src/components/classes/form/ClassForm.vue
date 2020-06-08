@@ -138,14 +138,10 @@
       <div class="cls-info">
         <LevelTable />
       </div>
-      <!--  Temp: Class Info  -->
-      <div>
-        {{ cls }}
-      </div>
     </div>
     <!--  Action Buttons  -->
     <div class="buttons is-pulled-right">
-      <b-button type="is-success">Submit</b-button>
+      <b-button @click="submit()" type="is-success">Submit</b-button>
       <b-button @click="cancel()" type="is-danger">Cancel</b-button>
     </div>
   </div>
@@ -161,7 +157,13 @@ import {
   Skill
 } from "@/shared/types/class";
 import { Ref, ref } from "@vue/composition-api";
-import { addAttack, addDefense, addSkill, newClass } from "@/services/classes";
+import {
+  addAttack,
+  addClass,
+  addDefense,
+  addSkill,
+  newClass
+} from "@/services/classes";
 
 interface ClassFormProps {
   cancel: Function;
@@ -179,7 +181,7 @@ export default {
       required: true
     }
   },
-  setup() {
+  setup(props: ClassFormProps) {
     const cls: Ref<CharacterClass> = newClass();
     const isOpen: Ref<boolean> = ref(false);
 
@@ -207,6 +209,11 @@ export default {
       }
     }
 
+    function submit() {
+      addClass(cls.value);
+      props.cancel();
+    }
+
     function close() {
       isOpen.value = false;
     }
@@ -220,6 +227,7 @@ export default {
       attack,
       defense: defense,
       addSkills,
+      submit,
       close
     };
   }

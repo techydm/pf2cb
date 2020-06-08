@@ -23,12 +23,12 @@ export type Buffs =
   | "ability_boost"
   | "ancestory";
 export const BUFFS = [
-  { key: "class", value: "class" },
-  { key: "skill", value: "skill" },
-  { key: "general", value: "general" },
-  { key: "skill increase", value: "skill_increase" },
-  { key: "ability boost", value: "ability_boost" },
-  { key: "ancestory", value: "ancestory" }
+  { key: "class", value: "Class Feat" },
+  { key: "skill", value: "Skill Feat" },
+  { key: "general", value: "General Feat" },
+  { key: "skill_increase", value: "Skill Increase" },
+  { key: "ability_boost", value: "Ability Boost" },
+  { key: "ancestry", value: "Ancestry Feat" }
 ];
 
 export class SavingThrows {
@@ -52,6 +52,7 @@ export class Level {
   public level: number = 0;
   public buffs: Array<Buffs> = [];
   public features: Array<ClassFeature> = [];
+  public classFeatures: string = ""; // This for displaying on the LevelTable component
 }
 
 export class CharacterClass {

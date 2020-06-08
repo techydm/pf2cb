@@ -15,10 +15,10 @@
             v-for="buff in BUFFS"
             :key="buff.value"
             :value="buff.value"
-            @click="levelBuffs(buff.key)"
+            @click="addBuffs(buff.key)"
             aria-role="listitem"
           >
-            <span>{{ buff.key }}</span>
+            <span>{{ buff.value }}</span>
           </b-dropdown-item>
         </b-dropdown>
         <!--   Features  -->
@@ -29,7 +29,6 @@
             type="textarea"
             v-model="feature.description"
             minlength="10"
-            maxlength="100"
             placeholder="Descripiton"
           />
           <b-button type="is-success" icon-right="plus" @click="addFeature()" />

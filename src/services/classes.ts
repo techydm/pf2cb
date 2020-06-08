@@ -1,4 +1,11 @@
-import { CharacterClass, Level, Skill } from "@/shared/types/class";
+import {
+  Buffs,
+  BUFFS,
+  CharacterClass,
+  ClassFeature,
+  Level,
+  Skill
+} from "@/shared/types/class";
 import { ref, Ref } from "@vue/composition-api";
 import { DspSpellRow } from "@/services/spellForm";
 
@@ -58,6 +65,37 @@ export function getNextLevel() {
   return workingClass.value.levels.length + 1;
 }
 
+export function generateClassFeatures(lvl: Level): string {
+  let classFeatures: string = "";
+
+  // Buffs
+  lvl.buffs.map((buff: Buffs) => {
+    if (lvl.buffs.indexOf(buff) === 0) {
+      classFeatures = BUFFS.filter(b => b.key === buff)[0].value;
+      return;
+    }
+
+    classFeatures = `${classFeatures}, ${
+      BUFFS.filter(b => b.key === buff)[0].value
+    }`;
+    return;
+  });
+
+  // Features
+  lvl.features.map((feature: ClassFeature) => {
+    if (classFeatures === "") {
+      classFeatures = feature.name;
+      return;
+    }
+
+    classFeatures = `${classFeatures}, ${feature.name}`;
+    return;
+  });
+
+  return classFeatures;
+}
+
 export function addLevel(lvl: Level) {
+  lvl.classFeatures = generateClassFeatures(lvl);
   workingClass.value.levels.push(lvl);
 }
