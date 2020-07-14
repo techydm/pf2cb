@@ -2,7 +2,11 @@
   <div class="cls-base">
     <div class="cls-inputs">
       <!--  Icon  -->
-      <img class="cls-icon" src="https://picsum.photos/200" alt="" />
+      <img
+        class="cls-icon"
+        alt="https://picsum.photos/200"
+        src="@/assets/pf2class_icon/Druid.png"
+      />
       <!--  General Info  -->
       <div class="cls-info">
         <b-field label="Name" custom-class="has-text-light">
@@ -313,7 +317,7 @@ export default {
   height: 7.5rem;
   width: 7.5rem;
   border-radius: 50%;
-  background-color: $accent;
+  background-color: $primary;
   border: solid 0.1rem $accent;
   text-align: center;
   margin: 1rem 0 0 1rem;
