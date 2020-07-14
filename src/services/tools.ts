@@ -6,7 +6,7 @@ export default function toolList() {
   const tools = ref([
     new Tool("Character Creation", "/characters", "ra-aura"),
     new Tool("Classes", "/classes", "ra-torch"),
-    new Tool("Feats", "/feats", "ra-aura")
+    new Tool("Feats", "/feats", "ra-player-pyromaniac")
   ]);
 
   // Setting the last tool to be the settings option

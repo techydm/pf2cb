@@ -1,6 +1,7 @@
 <template>
   <div class="cls-base">
-    <img class="cls-icon" src="https://picsum.photos/200" alt="" />
+    <img class="cls-icon" alt=https://picsum.photos/200
+    src="@/assets/pf2class_icon/Druid.png"/>
     <div class="cls-info">
       <div>Name: {{ cls.name }}</div>
       <div>Primary Ability: {{ cls.primaryAbility }}</div>
@@ -43,7 +44,7 @@ export default {
   height: 7.5rem;
   width: 7.5rem;
   border-radius: 50%;
-  background-color: $accent;
+  background-color: $primary;
   border: solid 0.1rem $accent;
   text-align: center;
   margin: 1rem 0 0 1rem;

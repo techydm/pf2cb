@@ -51,13 +51,34 @@ export function addSkill(skill: Skill) {
   return;
 }
 
+export function removeSkill(name: string) {
+  workingClass.value.skills = workingClass.value.skills.filter(
+    skill => skill.name !== name
+  );
+  return;
+}
+
 export function addAttack(attack: Skill) {
   workingClass.value.attacks.push(attack);
   return;
 }
 
+export function removeAttack(name: string) {
+  workingClass.value.attacks = workingClass.value.attacks.filter(
+    skill => skill.name !== name
+  );
+  return;
+}
+
 export function addDefense(defence: Skill) {
   workingClass.value.defense.push(defence);
+  return;
+}
+
+export function removeDefense(name: string) {
+  workingClass.value.defense = workingClass.value.defense.filter(
+    skill => skill.name !== name
+  );
   return;
 }
 

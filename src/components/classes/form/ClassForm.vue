@@ -2,7 +2,11 @@
   <div class="cls-base">
     <div class="cls-inputs">
       <!--  Icon  -->
-      <img class="cls-icon" src="https://picsum.photos/200" alt="" />
+      <img
+        class="cls-icon"
+        alt="https://picsum.photos/200"
+        src="@/assets/pf2class_icon/Druid.png"
+      />
       <!--  General Info  -->
       <div class="cls-info">
         <b-field label="Name" custom-class="has-text-light">
@@ -86,6 +90,19 @@
             </b-field>
           </b-field>
         </b-field>
+        <div>
+          <b-tag
+            v-for="skill in cls.skills"
+            :key="skill.name"
+            closable
+            @close="removeSkills('skill', skill.name)"
+            class="is-dark"
+            size="is-medium"
+            aria-close-label="Close tag"
+          >
+            {{ skill.name }}
+          </b-tag>
+        </div>
         <b-field grouped>
           <b-field label="Attacks" custom-class="has-text-light" expanded>
             <b-field>
@@ -106,6 +123,19 @@
             </b-field>
           </b-field>
         </b-field>
+        <div>
+          <b-tag
+            v-for="att in cls.attacks"
+            :key="att.name"
+            closable
+            @close="removeSkills('attack', att.name)"
+            class="is-dark"
+            size="is-medium"
+            aria-close-label="Close tag"
+          >
+            {{ att.name }}
+          </b-tag>
+        </div>
         <b-field grouped>
           <b-field label="Defenses" custom-class="has-text-light" expanded>
             <b-field>
@@ -126,6 +156,19 @@
             </b-field>
           </b-field>
         </b-field>
+        <div>
+          <b-tag
+            v-for="def in cls.defense"
+            :key="def.name"
+            closable
+            @close="removeSkills('defense', def.name)"
+            class="is-dark"
+            size="is-medium"
+            aria-close-label="Close tag"
+          >
+            {{ def.name }}
+          </b-tag>
+        </div>
       </div>
       <!--  Spells  -->
       <div class="cls-info">
@@ -159,9 +202,12 @@ import {
 import { Ref, ref } from "@vue/composition-api";
 import {
   addAttack,
+  removeAttack,
   addClass,
   addDefense,
+  removeDefense,
   addSkill,
+  removeSkill,
   newClass
 } from "@/services/classes";
 
@@ -209,6 +255,23 @@ export default {
       }
     }
 
+    function removeSkills(type: string, name: string) {
+      switch (type) {
+        case "skill": {
+          removeSkill(name);
+          break;
+        }
+        case "attack": {
+          removeAttack(name);
+          break;
+        }
+        case "defense": {
+          removeDefense(name);
+          break;
+        }
+      }
+    }
+
     function submit() {
       addClass(cls.value);
       props.cancel();
@@ -227,6 +290,7 @@ export default {
       attack,
       defense: defense,
       addSkills,
+      removeSkills,
       submit,
       close
     };
@@ -253,7 +317,7 @@ export default {
   height: 7.5rem;
   width: 7.5rem;
   border-radius: 50%;
-  background-color: $accent;
+  background-color: $primary;
   border: solid 0.1rem $accent;
   text-align: center;
   margin: 1rem 0 0 1rem;

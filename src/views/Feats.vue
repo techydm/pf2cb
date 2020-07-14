@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Feats</h1>
+    <h1 class="title has-text-light">Feats</h1>
   </div>
 </template>
 
