@@ -4,7 +4,7 @@
       <!--  Icon  -->
       <img
         class="cls-icon"
-        alt="https://picsum.photos/200"
+        alt="Class Icon"
         src="@/assets/pf2class_icon/Druid.png"
       />
       <!--  General Info  -->
