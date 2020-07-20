@@ -1,7 +1,10 @@
 <template>
   <div class="cls-base">
-    <img class="cls-icon" alt=https://picsum.photos/200
-    src="@/assets/pf2class_icon/Druid.png"/>
+    <img
+      class="cls-icon"
+      alt="class icon"
+      src="@/assets/pf2class_icon/Druid.png"
+    />
     <div class="cls-info">
       <div>Name: {{ cls.name }}</div>
       <div>Primary Ability: {{ cls.primaryAbility }}</div>
