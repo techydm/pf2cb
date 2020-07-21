@@ -1,13 +1,23 @@
-<!--Name-->
-<!--Tags -->
-<!--Level-->
-<!--Description-->
-<!--Prerequisites (which aren't required)-->
 <template>
   <div class="cls.base">
-    <div class="cls.inputs"></div>
+    <h1>FeatformPage</h1>
+    <!-- <div class="cls.inputs"></div> -->
   </div>
 </template>
+
+<script>
+import { Ref, ref } from "@vue/composition-api";
+
+export default {
+  name: "FeatForm",
+  props: {
+    cancel: {
+      type: [Function],
+      required: true
+    }
+  }
+};
+</script>
 
 <!--Styling which was copied from ClassForm-->
 <style scoped lang="scss">
