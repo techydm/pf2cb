@@ -4,7 +4,7 @@
       <!--  Icon  -->
       <img
         class="cls-icon"
-        alt="https://picsum.photos/200"
+        alt="Class Icon"
         src="@/assets/pf2class_icon/Druid.png"
       />
       <!--  General Info  -->
@@ -23,13 +23,14 @@
           <b-input v-model="cls.baseHp" type="number" />
         </b-field>
         <b-field label="Require Deity" custom-class="has-text-light">
-          <b-radio-button
+          <b-button
+            expanded
             v-model="cls.requireDeity"
-            native-value="true"
-            type="is-success"
+            :type="cls.requireDeity ? 'is-success' : ''"
+            @click="isDietyRequired()"
           >
             <i class="ra ra-moon-sun ra-fw ra-2x" />
-          </b-radio-button>
+          </b-button>
         </b-field>
         <b-field label="Additional Skills" custom-class="has-text-light">
           <b-input v-model="cls.additionalSkills" type="number" />
@@ -272,6 +273,10 @@ export default {
       }
     }
 
+    function isDietyRequired() {
+      cls.value.requireDeity = !cls.value.requireDeity;
+    }
+
     function submit() {
       addClass(cls.value);
       props.cancel();
@@ -288,9 +293,10 @@ export default {
       isOpen,
       skill,
       attack,
-      defense: defense,
+      defense,
       addSkills,
       removeSkills,
+      isDietyRequired,
       submit,
       close
     };

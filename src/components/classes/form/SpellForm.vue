@@ -62,8 +62,10 @@ export default {
     // Table info
     const { data, columns } = getTableData();
 
-    // Temp
+    // Processing variable
     const spellSlots: Ref<SpellRow> = ref(new SpellRow());
+
+    // Adding row to the spell slot table
     function addSpells() {
       addRow(spellSlots.value);
       spellSlots.value = new SpellRow();
