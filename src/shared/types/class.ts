@@ -21,7 +21,7 @@ export type Buffs =
   | "general"
   | "skill_increase"
   | "ability_boost"
-  | "ancestory";
+  | "ancestry";
 export const BUFFS = [
   { key: "class", value: "Class Feat" },
   { key: "skill", value: "Skill Feat" },

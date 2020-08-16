@@ -2,7 +2,7 @@
   <div>
     <!--  Table  -->
     <b-table hoverable bordered :columns="columns" :data="data">
-      <template slot="footer">
+      <template v-if="!viewMode" slot="footer">
         <div class="buttons is-pulled-right">
           <b-button @click="isOpen = true" type="is-info">Add</b-button>
           <b-button @click="submit()" type="is-success">Submit</b-button>
@@ -52,7 +52,11 @@ export default {
   props: {
     cancel: {
       type: [Function],
-      required: true
+      required: false
+    },
+    viewMode: {
+      type: [Boolean],
+      default: false
     }
   },
   setup(props: SpellFormProp) {
