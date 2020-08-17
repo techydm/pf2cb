@@ -1,16 +1,18 @@
 <template>
-  <div @click="openModal()" class="cls-base">
-    <img class="cls-icon" alt=https://picsum.photos/200
-    src="@/assets/pf2class_icon/Druid.png"/>
-    <div class="cls-info">
-      <div>Name: {{ cls.name }}</div>
-      <div>Primary Ability: {{ cls.primaryAbility }}</div>
-      <div>Hp: {{ cls.baseHp }}</div>
-      <div>Spellcaster: {{ cls.spellSlots.length > 0 }}</div>
+  <div>
+    <div @click="openModal()" class="cls-base">
+      <img class="cls-icon" alt=https://picsum.photos/200
+      src="@/assets/pf2class_icon/Druid.png"/>
+      <div class="cls-info">
+        <div>Name: {{ cls.name }}</div>
+        <div>Primary Ability: {{ cls.primaryAbility }}</div>
+        <div>Hp: {{ cls.baseHp }}</div>
+        <div>Spellcaster: {{ cls.spellSlots.length > 0 }}</div>
+      </div>
     </div>
     <!--  Modal  -->
-    <b-modal :active.sync="isOpen">
-      <ClassView :cls="cls" />
+    <b-modal :active.sync="classView">
+      <ClassView :cls="cls" :close="closeModal" />
     </b-modal>
   </div>
 </template>
@@ -32,14 +34,20 @@ export default {
     ClassView
   },
   setup() {
-    const isOpen: Ref<boolean> = ref(false);
+    const classView: Ref<boolean> = ref(false);
     function openModal() {
-      isOpen.value = true;
+      classView.value = true;
+    }
+    function closeModal() {
+      console.log(classView.value);
+      classView.value = false;
+      console.log(classView.value);
     }
 
     return {
-      isOpen,
-      openModal
+      classView,
+      openModal,
+      closeModal
     };
   }
 };

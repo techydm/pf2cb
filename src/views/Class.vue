@@ -1,8 +1,13 @@
 <template>
   <div class="container">
     <h1 class="title has-text-light">Classes</h1>
-    <div class="classes-layout" v-for="cls in classes" :key="cls.name">
-      <ClassCard :cls="cls" class="class-card" />
+    <div class="classes-layout">
+      <ClassCard
+        v-for="cls in classes"
+        :key="cls.name"
+        :cls="cls"
+        class="class-card"
+      />
     </div>
     <b-button
       type="is-info"
@@ -47,6 +52,7 @@ export default {
 @import "../assets/styles";
 
 .class-card {
+  height: 100px;
   margin-top: 2rem;
 }
 

@@ -8,13 +8,14 @@
       <div>Spellcaster: {{ cls.spellSlots.length > 0 }}</div>
     </div>
     <!--  Spell Progression  -->
-    <SpellForm view-mode />
+    <SpellForm v-show="cls.spellSlots.length > 0" view-mode />
     <!--  Level Table  -->
     <LevelTable view-mode />
     <!--  Action Bar  -->
     <div class="buttons">
-      <b-button type="is-info">Edit</b-button>
-      <b-button @click="cancel()" type="is-danger">Cancel</b-button>
+      <b-button disabled type="is-info">Edit</b-button>
+      <b-button disabled type="is-danger">Delete</b-button>
+      <b-button @click="close()" type="is-danger">Close</b-button>
     </div>
   </div>
 </template>
@@ -29,6 +30,10 @@ export default {
   props: {
     cls: {
       type: [CharacterClass],
+      required: true
+    },
+    close: {
+      type: [Function],
       required: true
     }
   },
