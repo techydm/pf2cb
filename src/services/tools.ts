@@ -1,5 +1,5 @@
 import { ref } from "@vue/composition-api";
-import { Tool } from "@/shared/types/tool";
+import { Tool } from "@/shared/types/Tool";
 
 export default function toolList() {
   // List of tools that the user has access to

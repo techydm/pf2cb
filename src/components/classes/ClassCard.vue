@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { CharacterClass } from "@/shared/types/class";
+import { CharacterClass } from "@/shared/types/Class";
 import ClassView from "@/components/classes/ClassView.vue";
 import { Ref, ref } from "@vue/composition-api";
 

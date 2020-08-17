@@ -199,7 +199,7 @@ import {
   CharacterClass,
   MASTERY,
   Skill
-} from "@/shared/types/class";
+} from "@/shared/types/Class";
 import { Ref, ref } from "@vue/composition-api";
 import {
   addAttack,

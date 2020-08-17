@@ -5,7 +5,7 @@ import {
   ClassFeature,
   Level,
   Skill
-} from "@/shared/types/class";
+} from "@/shared/types/Class";
 import { ref, Ref } from "@vue/composition-api";
 import { DspSpellRow } from "@/services/spellForm";
 

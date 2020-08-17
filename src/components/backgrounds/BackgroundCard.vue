@@ -1,12 +1,22 @@
 <template>
-  <div>
-    <h1>Card</h1>
-  </div>
+  <div></div>
 </template>
-<script>
+
+<script lang="ts">
+import { Background } from "@/shared/types/Backgrounds";
+
 export default {
-  name: "BackgroundCard"
+  name: "BackgroundCard",
+  props: {
+    background: {
+      type: [Background],
+      required: true
+    }
+  },
+  setup() {
+    return {};
+  }
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss"></style>

@@ -50,7 +50,7 @@
 
 <script lang="ts">
 import { Ref, ref } from "@vue/composition-api";
-import { Buffs, BUFFS, ClassFeature, Level } from "@/shared/types/class";
+import { Buffs, BUFFS, ClassFeature, Level } from "@/shared/types/Class";
 import { addLevel, getNextLevel } from "@/services/classes";
 
 interface LevelFormProps {
