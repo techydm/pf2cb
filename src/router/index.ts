@@ -16,6 +16,11 @@ const routes: Array<RouteConfig> = [
     component: () => import("../views/About.vue")
   },
   {
+    path: "/backgrounds",
+    name: "background",
+    component: () => import("../views/Background.vue")
+  },
+  {
     path: "/characters",
     name: "character",
     component: () => import("../views/Character.vue")
