@@ -1,18 +1,34 @@
 <template>
-  <div>
+  <div class="display-base">
     <!--  Class Details  -->
-    <div>
-      <div>Name: {{ cls.name }}</div>
-      <div>Primary Ability: {{ cls.primaryAbility }}</div>
-      <div>Hp: {{ cls.baseHp }}</div>
-      <div>Spellcaster: {{ cls.spellSlots.length > 0 }}</div>
+    <div class="display-class-details">
+      <div class="label has-text-light is-size-3">
+        <span class="has-text-weight-bold">Name: </span>
+        <span class="is-capitalized has-text-weight-normal">{{
+          cls.name
+        }}</span>
+      </div>
+      <div class="label has-text-light is-size-4">
+        <span class="has-text-weight-bold">Primary Ability: </span>
+        <span class="is-capitalized has-text-weight-normal">{{
+          cls.primaryAbility
+        }}</span>
+      </div>
+      <div class="label has-text-light is-size-4">
+        <span class="has-text-weight-bold">Hp: </span>
+        <span class="is-capitalized has-text-weight-normal">{{
+          cls.baseHp
+        }}</span>
+      </div>
     </div>
     <!--  Spell Progression  -->
     <SpellForm v-show="cls.spellSlots.length > 0" view-mode />
     <!--  Level Table  -->
-    <LevelTable view-mode />
+    <div class="display-level-table">
+      <LevelTable view-mode />
+    </div>
     <!--  Action Bar  -->
-    <div class="buttons">
+    <div class="buttons is-right">
       <b-button disabled type="is-info">Edit</b-button>
       <b-button disabled type="is-danger">Delete</b-button>
       <b-button @click="close()" type="is-danger">Close</b-button>
@@ -47,4 +63,22 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+@import "../../assets/styles";
+
+.display-base {
+  padding: 3rem;
+  border-radius: 2.5rem;
+  background-color: $primary;
+  display: flex;
+  flex-flow: column;
+}
+
+.display-class-details {
+  margin-bottom: 2rem;
+}
+
+.display-level-table {
+  margin-bottom: 2rem;
+}
+</style>

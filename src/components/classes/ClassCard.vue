@@ -2,7 +2,7 @@
   <div>
     <div @click="openModal()" class="cls-base">
       <img class="cls-icon" alt=https://picsum.photos/200
-      src="@/assets/pf2class_icon/Druid.png"/>
+      src="@/assets/pf2class_icon/druid.png"/>
       <div class="cls-info">
         <div>Name: {{ cls.name }}</div>
         <div>Primary Ability: {{ cls.primaryAbility }}</div>
@@ -11,7 +11,7 @@
       </div>
     </div>
     <!--  Modal  -->
-    <b-modal :active.sync="classView">
+    <b-modal :active.sync="classView" :can-cancel="false">
       <ClassView :cls="cls" :close="closeModal" />
     </b-modal>
   </div>
@@ -39,9 +39,7 @@ export default {
       classView.value = true;
     }
     function closeModal() {
-      console.log(classView.value);
       classView.value = false;
-      console.log(classView.value);
     }
 
     return {
