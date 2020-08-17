@@ -17,7 +17,7 @@
       <i class="ra ra-forging ra-fw ra-3x" />
     </b-button>
     <!--  Modal  -->
-    <b-modal full-screen :active.sync="isOpen" :can-cancel="false"> </b-modal>
+    <b-modal full-screen :active.sync="isOpen" :can-cancel="false"></b-modal>
   </div>
 </template>
 

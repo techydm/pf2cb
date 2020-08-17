@@ -13,3 +13,7 @@ export function getBackgrounds(): Ref<Background[]> {
   // return the backgrounds
   return backgrounds;
 }
+
+export function newBackground(): Ref<Background> {
+  return ref(new Background());
+}
