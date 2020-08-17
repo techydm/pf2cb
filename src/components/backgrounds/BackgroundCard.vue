@@ -1,5 +1,11 @@
 <template>
-  <div></div>
+  <div>
+    <div>{{ background.name }}</div>
+    <div>{{ background.description }}</div>
+    <div>{{ background.boosts }}</div>
+    <div>{{ background.skills }}</div>
+    <div>{{ background.feats }}</div>
+  </div>
 </template>
 
 <script lang="ts">

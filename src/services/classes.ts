@@ -3,9 +3,9 @@ import {
   BUFFS,
   CharacterClass,
   ClassFeature,
-  Level,
-  Skill
+  Level
 } from "@/shared/types/Class";
+import { Skill } from "@/shared/types/Skills";
 import { ref, Ref } from "@vue/composition-api";
 import { DspSpellRow } from "@/services/spellForm";
 

@@ -1,7 +1,13 @@
 <template>
   <div class="container">
     <h1 class="title has-text-light">Backgrounds</h1>
-    <div class="backgrounds-layout"></div>
+    <div class="backgrounds-layout">
+      <BackgroundCard
+        v-for="background in backgrounds"
+        :key="background.id"
+        :background="background"
+      />
+    </div>
     <b-button
       type="is-info"
       class="new-button"
@@ -16,8 +22,21 @@
 </template>
 
 <script lang="ts">
+import BackgroundCard from "@/components/backgrounds/BackgroundCard.vue";
+import { ref, Ref } from "@vue/composition-api";
+import { Background } from "@/shared/types/Backgrounds";
+import { getBackgrounds } from "@/services/backgrounds";
+
 export default {
-  name: "Background"
+  name: "Background",
+  components: {
+    BackgroundCard
+  },
+  setup() {
+    const backgrounds: Ref<Background[]> = ref(getBackgrounds());
+
+    return { backgrounds };
+  }
 };
 </script>
 
