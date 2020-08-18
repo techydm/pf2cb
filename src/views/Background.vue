@@ -6,6 +6,7 @@
         v-for="background in backgrounds"
         :key="background.id"
         :background="background"
+        class="background-card"
       />
     </div>
     <b-button
@@ -17,7 +18,7 @@
       <i class="ra ra-forging ra-fw ra-3x" />
     </b-button>
     <!--  Modal  -->
-    <b-modal full-screen :active.sync="isOpen" :can-cancel="false">
+    <b-modal :active.sync="isOpen" :can-cancel="false">
       <BackgroundForm :cancel="close" />
     </b-modal>
   </div>
@@ -37,7 +38,7 @@ export default {
     BackgroundForm
   },
   setup() {
-    const backgrounds: Ref<Background[]> = ref(getBackgrounds());
+    const backgrounds: Ref<Background[]> = getBackgrounds();
     const isOpen: Ref<boolean> = ref(false);
 
     function close(): void {
@@ -51,6 +52,11 @@ export default {
 
 <style scoped lang="scss">
 @import "../assets/styles";
+
+.background-card {
+  height: 100px;
+  margin-top: 2rem;
+}
 
 .backgrounds-layout {
   display: flex;
