@@ -17,12 +17,15 @@
       <i class="ra ra-forging ra-fw ra-3x" />
     </b-button>
     <!--  Modal  -->
-    <b-modal full-screen :active.sync="isOpen" :can-cancel="false"></b-modal>
+    <b-modal full-screen :active.sync="isOpen" :can-cancel="false">
+      <BackgroundForm :cancel="close" />
+    </b-modal>
   </div>
 </template>
 
 <script lang="ts">
 import BackgroundCard from "@/components/backgrounds/BackgroundCard.vue";
+import BackgroundForm from "@/components/backgrounds/BackgroundForm.vue";
 import { ref, Ref } from "@vue/composition-api";
 import { Background } from "@/shared/types/Backgrounds";
 import { getBackgrounds } from "@/services/backgrounds";
@@ -30,12 +33,18 @@ import { getBackgrounds } from "@/services/backgrounds";
 export default {
   name: "Background",
   components: {
-    BackgroundCard
+    BackgroundCard,
+    BackgroundForm
   },
   setup() {
     const backgrounds: Ref<Background[]> = ref(getBackgrounds());
+    const isOpen: Ref<boolean> = ref(false);
 
-    return { backgrounds };
+    function close(): void {
+      isOpen.value = false;
+    }
+
+    return { backgrounds, isOpen, close };
   }
 };
 </script>
