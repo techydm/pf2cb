@@ -38,6 +38,8 @@
           </b-dropdown>
         </b-field>
       </div>
+      <!--  Skills  -->
+      <div class="form-field"></div>
       <!--  Feat  -->
       <div class="form-field">
         <b-field custom-class="has-text-light" label="Find Feat">
@@ -65,7 +67,11 @@
 <script lang="ts">
 import { ref, Ref } from "@vue/composition-api";
 import { Background, BOOSTS } from "@/shared/types/Backgrounds";
-import { newBackground, addBoost } from "@/services/backgrounds";
+import {
+  newBackground,
+  addBoost,
+  submitBackground
+} from "@/services/backgrounds";
 import { Feat } from "@/shared/types/Feat";
 
 interface BackgroundFormProps {
@@ -84,7 +90,8 @@ export default {
     const background: Ref<Background> = newBackground();
 
     function submit() {
-      return;
+      submitBackground(background.value);
+      props.cancel();
     }
 
     function close() {

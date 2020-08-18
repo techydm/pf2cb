@@ -36,3 +36,11 @@ export function addBoost(boost: string): void {
   // TODO: Error handling
   return;
 }
+
+export function submitBackground(background: Background): void {
+  // TODO: Decide how I'm going to handle IDs
+  // TODO: Validate the background make sure not making duplicate
+  backgrounds.value.push(background);
+
+  // TODO: Async function writing the data to the disk and/or sending it to remote server
+}
