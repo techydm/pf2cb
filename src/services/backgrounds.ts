@@ -4,7 +4,16 @@ import { Background, BOOSTS, Boosts } from "@/shared/types/Backgrounds";
 import { Skill } from "@/shared/types/Skills";
 import { workingClass } from "@/services/classes";
 
-const backgrounds: Ref<Background[]> = ref([]);
+const backgrounds: Ref<Background[]> = ref([
+  {
+    id: 1,
+    name: "Urchin",
+    description: "Kid from the slumps",
+    boosts: ["dexterity", "wisdom", "free"],
+    skills: [{ name: "deception", mastery: "trained" }],
+    feats: []
+  }
+]);
 const wrkBackground: Ref<Background> = ref({});
 
 // Validators
@@ -18,9 +27,6 @@ export function newBackground(): Ref<Background> {
 
 export function getBackgrounds(): Ref<Background[]> {
   // Pull data from some external source
-
-  // Set the backgrounds in the store
-  backgrounds.value = [];
 
   // return the backgrounds
   return backgrounds;

@@ -19,7 +19,9 @@
     </b-button>
     <!--  Modal  -->
     <b-modal :active.sync="isOpen" :can-cancel="false">
-      <BackgroundForm class="background-form" :cancel="close" />
+      <div class="background-form-container">
+        <BackgroundForm class="background-form" :cancel="close" />
+      </div>
     </b-modal>
   </div>
 </template>
@@ -53,11 +55,6 @@ export default {
 <style scoped lang="scss">
 @import "../assets/styles";
 
-.background-card {
-  height: 100px;
-  margin-top: 2rem;
-}
-
 .backgrounds-layout {
   display: flex;
   flex-flow: row wrap;
@@ -67,9 +64,17 @@ export default {
   margin-bottom: 1rem;
 }
 
+.background-form-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .background-form {
   overflow-y: hidden;
   height: 45rem;
+  width: 35rem;
   padding: 2rem;
   border-radius: 2rem;
 }
