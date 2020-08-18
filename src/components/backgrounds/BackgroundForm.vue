@@ -39,7 +39,13 @@
         </b-field>
       </div>
       <!--  Skills  -->
-      <div class="form-field"></div>
+      <div class="form-field">
+        <SkillInput
+          :skills="background.skills"
+          @add-skill="addSkill"
+          @remove-skill="removeSkill"
+        />
+      </div>
       <!--  Feat  -->
       <div class="form-field">
         <b-field custom-class="has-text-light" label="Find Feat">
@@ -65,12 +71,15 @@
 </template>
 
 <script lang="ts">
+import SkillInput from "@/components/utility/SkillInput.vue";
 import { ref, Ref } from "@vue/composition-api";
 import { Background, BOOSTS } from "@/shared/types/Backgrounds";
 import {
   newBackground,
   addBoost,
-  submitBackground
+  submitBackground,
+  addSkill,
+  removeSkill
 } from "@/services/backgrounds";
 import { Feat } from "@/shared/types/Feat";
 
@@ -80,6 +89,9 @@ interface BackgroundFormProps {
 
 export default {
   name: "BackgroundForm",
+  components: {
+    SkillInput
+  },
   props: {
     cancel: {
       type: [Function],
@@ -111,7 +123,9 @@ export default {
       BOOSTS,
       submit,
       close,
-      addBoost
+      addBoost,
+      addSkill,
+      removeSkill
     };
   }
 };
@@ -132,6 +146,6 @@ export default {
 }
 
 .form-field {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 </style>

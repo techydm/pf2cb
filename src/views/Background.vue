@@ -69,7 +69,7 @@ export default {
 
 .background-form {
   overflow-y: hidden;
-  height: 40rem;
+  height: 45rem;
   padding: 2rem;
   border-radius: 2rem;
 }
