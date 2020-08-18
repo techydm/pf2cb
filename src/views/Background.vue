@@ -19,7 +19,7 @@
     </b-button>
     <!--  Modal  -->
     <b-modal :active.sync="isOpen" :can-cancel="false">
-      <BackgroundForm :cancel="close" />
+      <BackgroundForm class="background-form" :cancel="close" />
     </b-modal>
   </div>
 </template>
@@ -65,6 +65,13 @@ export default {
 
   overflow-y: auto;
   margin-bottom: 1rem;
+}
+
+.background-form {
+  overflow-y: hidden;
+  height: 40rem;
+  padding: 2rem;
+  border-radius: 2rem;
 }
 
 .new-button {

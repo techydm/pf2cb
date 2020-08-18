@@ -1,48 +1,58 @@
 <template>
   <div class="form-base">
-    <div class="form-info">
+    <div>
       <!--   Name   -->
-      <b-field label="Name" custom-class="has-text-light">
-        <b-input v-model="background.name" />
-      </b-field>
+      <div class="form-field">
+        <b-field label="Name" custom-class="has-text-light">
+          <b-input v-model="background.name" />
+        </b-field>
+      </div>
       <!--   Description   -->
-      <b-field label="Description" custom-class="has-text-light">
-        <b-input
-          type="textarea"
-          v-model="background.description"
-          minlength="10"
-          placehoder="Description"
-        />
-      </b-field>
+      <div class="form-field">
+        <b-field label="Description" custom-class="has-text-light">
+          <b-input
+            type="textarea"
+            v-model="background.description"
+            minlength="10"
+            placehoder="Description"
+          />
+        </b-field>
+      </div>
       <!--  Boosts  -->
-      <b-dropdown multiple aria-role="list">
-        <button class="button is-primary" type="button" slot="trigger">
-          <h1>Boosts</h1>
-          <b-icon icon="menu-down"></b-icon>
-        </button>
-        <b-dropdown-item
-          v-for="boost in BOOSTS"
-          :key="boost"
-          :value="boost"
-          @click="addBoost(boost)"
-          aria-role="listitem"
-        >
-          <span>{{ boost }}</span>
-        </b-dropdown-item>
-      </b-dropdown>
+      <div class="form-field">
+        <b-field label="Boosts" custom-class="has-text-light">
+          <b-dropdown scrollable max-height="10rem" multiple aria-role="list">
+            <button class="button is-primary" type="button" slot="trigger">
+              <h1>Select</h1>
+              <b-icon icon="menu-down"></b-icon>
+            </button>
+            <b-dropdown-item
+              v-for="boost in BOOSTS"
+              :key="boost"
+              :value="boost"
+              @click="addBoost(boost)"
+              aria-role="listitem"
+            >
+              <span>{{ boost }}</span>
+            </b-dropdown-item>
+          </b-dropdown>
+        </b-field>
+      </div>
       <!--  Feat  -->
-      <b-field custom-class="has-text-light" label="Find Feat">
-        <b-autocomplete
-          v-model="feat"
-          :data="feats"
-          placeholder="Some Feat name"
-          icon="magnify"
-          clearable
-          @select="option => (selected = option)"
-        >
-          <template slot="empty">No results found</template>
-        </b-autocomplete>
-      </b-field>
+      <div class="form-field">
+        <b-field custom-class="has-text-light" label="Find Feat">
+          <b-autocomplete
+            v-model="feat"
+            :data="feats"
+            placeholder="Some Feat name"
+            icon="magnify"
+            clearable
+            @select="option => (selected = option)"
+          >
+            <template slot="empty">No results found</template>
+          </b-autocomplete>
+        </b-field>
+      </div>
     </div>
     <!--  Action Buttons  -->
     <div class="buttons is-pulled-right">
@@ -106,7 +116,6 @@ export default {
 .form-base {
   height: 100%;
   background-color: $primary;
-  padding: 1rem;
 }
 
 .form-inputs {
@@ -115,7 +124,7 @@ export default {
   flex-wrap: wrap;
 }
 
-.form-info {
-  margin: 2rem 0 0 2.5rem;
+.form-field {
+  margin-bottom: 3rem;
 }
 </style>
