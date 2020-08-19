@@ -1,8 +1,9 @@
 <template>
   <div class="background-base">
-    <div>{{ background.name }}</div>
-    <div>{{ background.description }}</div>
+    <div><span>Name:</span> {{ background.name }}</div>
+    <div>{{ background.description.substring(0, 100) }}...</div>
     <div class="background-tags">
+      <span>Boosts: </span>
       <b-tag
         v-for="boost in background.boosts"
         :key="boost"
@@ -13,6 +14,7 @@
       </b-tag>
     </div>
     <div class="background-tags">
+      <span>Skills: </span>
       <b-tag
         v-for="skill in background.skills"
         :key="skill.name"
@@ -24,6 +26,7 @@
       </b-tag>
     </div>
     <div class="background-tags">
+      <span>Feats: </span>
       <b-tag
         v-for="feat in background.feats"
         :key="feat.name"
@@ -58,7 +61,7 @@ export default {
 @import "../../assets/styles";
 
 .background-base {
-  height: 10rem;
+  height: 15rem;
   width: 45rem;
   padding: 1rem;
   border-radius: 2.5rem;
@@ -67,6 +70,7 @@ export default {
 
 .background-tags {
   display: flex;
+  align-items: center;
 }
 
 .background-tag {

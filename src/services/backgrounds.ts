@@ -7,11 +7,18 @@ import { workingClass } from "@/services/classes";
 const backgrounds: Ref<Background[]> = ref([
   {
     id: 1,
-    name: "Urchin",
-    description: "Kid from the slumps",
-    boosts: ["dexterity", "wisdom", "free"],
-    skills: [{ name: "deception", mastery: "trained" }],
-    feats: []
+    name: "Street Urchin",
+    description:
+      "You eked out a living by picking pockets on the streets of\n" +
+      "a major city, never knowing where you’d find your next\n" +
+      "meal. While some folk adventure for the glory, you do so\n" +
+      "to survive.",
+    boosts: ["dexterity", "constitution", "free"],
+    skills: [
+      { name: "thievery", mastery: "trained" },
+      { name: "lore: city", mastery: "trained" }
+    ],
+    feats: [{ name: "pickpocket" }]
   }
 ]);
 const wrkBackground: Ref<Background> = ref({});
