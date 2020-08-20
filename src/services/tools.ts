@@ -1,11 +1,12 @@
 import { ref } from "@vue/composition-api";
-import { Tool } from "@/shared/types/tool";
+import { Tool } from "@/shared/types/Tool";
 
 export default function toolList() {
   // List of tools that the user has access to
   const tools = ref([
     new Tool("Character Creation", "/characters", "ra-aura"),
     new Tool("Classes", "/classes", "ra-torch"),
+    new Tool("Backgrounds", "/backgrounds", "ra-wooden-sign"),
     new Tool("Feats", "/feats", "ra-player-pyromaniac")
   ]);
 

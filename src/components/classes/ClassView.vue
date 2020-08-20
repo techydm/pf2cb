@@ -37,7 +37,7 @@
 </template>
 
 <script lang="ts">
-import { CharacterClass } from "@/shared/types/class";
+import { CharacterClass } from "@/shared/types/Class";
 import LevelTable from "@/components/classes/LevelTable.vue";
 import SpellForm from "@/components/classes/form/SpellForm.vue";
 

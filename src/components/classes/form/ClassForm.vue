@@ -194,12 +194,10 @@
 <script lang="ts">
 import SpellForm from "@/components/classes/form/SpellForm.vue";
 import LevelTable from "@/components/classes/LevelTable.vue";
-import {
-  ABILITYSCORES,
-  CharacterClass,
-  MASTERY,
-  Skill
-} from "@/shared/types/class";
+import { CharacterClass } from "@/shared/types/Class";
+import { ABILITYSCORES } from "@/shared/types/AbilityScores";
+import { MASTERY } from "@/shared/types/Mastery";
+import { Skill } from "@/shared/types/Skills";
 import { Ref, ref } from "@vue/composition-api";
 import {
   addAttack,
