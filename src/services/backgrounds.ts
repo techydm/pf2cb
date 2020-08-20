@@ -2,25 +2,8 @@
 import { ref, Ref } from "@vue/composition-api";
 import { Background, BOOSTS, Boosts } from "@/shared/types/Backgrounds";
 import { Skill } from "@/shared/types/Skills";
-import { workingClass } from "@/services/classes";
 
-const backgrounds: Ref<Background[]> = ref([
-  {
-    id: 1,
-    name: "Street Urchin",
-    description:
-      "You eked out a living by picking pockets on the streets of\n" +
-      "a major city, never knowing where you’d find your next\n" +
-      "meal. While some folk adventure for the glory, you do so\n" +
-      "to survive.",
-    boosts: ["dexterity", "constitution", "free"],
-    skills: [
-      { name: "thievery", mastery: "trained" },
-      { name: "lore: city", mastery: "trained" }
-    ],
-    feats: [{ name: "pickpocket" }]
-  }
-]);
+const backgrounds: Ref<Background[]> = ref([]);
 const wrkBackground: Ref<Background> = ref({});
 
 // Validators
