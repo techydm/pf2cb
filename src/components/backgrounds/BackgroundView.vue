@@ -1,10 +1,7 @@
 <template>
   <div class="background-view-base">
     <div class="background-view-text">
-      <div class="label has-text-light">
-        <span class="is-size-4">Name: </span>
-        <span class="is-size-3">{{ background.name }}</span>
-      </div>
+      <div class="is-size-3 has-text-weight-bold">{{ background.name }}</div>
       <div class="is-size-5">{{ background.description }}</div>
     </div>
     <div class="background-tags">
