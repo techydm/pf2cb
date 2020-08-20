@@ -1,10 +1,14 @@
 <template>
   <div>
     <div @click="openModal()" class="background-base">
-      <div><span>Name:</span> {{ background.name }}</div>
-      <div>{{ background.description.substring(0, 100) }}...</div>
+      <div class="background-text">
+        <div class="background-text-name is-size-5 has-text-weight-bold">
+          {{ background.name }}
+        </div>
+        <div>{{ background.description.substring(0, 100) }}...</div>
+      </div>
       <div class="background-tags">
-        <span>Boosts: </span>
+        <span class="is-size-5 has-text-weight-bold">Boosts: </span>
         <b-tag
           v-for="boost in background.boosts"
           :key="boost"
@@ -15,7 +19,7 @@
         </b-tag>
       </div>
       <div class="background-tags">
-        <span>Skills: </span>
+        <span class="is-size-5 has-text-weight-bold">Skills: </span>
         <b-tag
           v-for="skill in background.skills"
           :key="skill.name"
@@ -27,7 +31,7 @@
         </b-tag>
       </div>
       <div class="background-tags">
-        <span>Feats: </span>
+        <span class="is-size-5 has-text-weight-bold">Feats: </span>
         <b-tag
           v-for="feat in background.feats"
           :key="feat.name"
@@ -40,8 +44,8 @@
       </div>
     </div>
     <!--  Modal  -->
-    <b-modal :active.sync="backgroundView">
-      <BackgroundView :background="background" />
+    <b-modal :active.sync="backgroundView" :can-cancel="false">
+      <BackgroundView :background="background" :close="closeModal" />
     </b-modal>
   </div>
 </template>
@@ -67,7 +71,10 @@ export default {
     function openModal() {
       backgroundView.value = true;
     }
-    return { backgroundView, openModal };
+    function closeModal() {
+      backgroundView.value = false;
+    }
+    return { backgroundView, openModal, closeModal };
   }
 };
 </script>
@@ -76,11 +83,19 @@ export default {
 @import "../../assets/styles";
 
 .background-base {
-  height: 15rem;
+  height: 17rem;
   width: 40rem;
-  padding: 1rem;
+  padding: 1rem 2rem 1rem 2rem;
   border-radius: 2.5rem;
   background-color: $primary;
+}
+
+.background-text {
+  margin-bottom: 1rem;
+}
+
+.background-text-name {
+  margin-bottom: 1rem;
 }
 
 .background-tags {

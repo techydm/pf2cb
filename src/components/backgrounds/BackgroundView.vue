@@ -1,9 +1,14 @@
 <template>
-  <div class="background-base">
-    <div><span>Name:</span> {{ background.name }}</div>
-    <div>{{ background.description }}</div>
+  <div class="background-view-base">
+    <div class="background-view-text">
+      <div class="label has-text-light">
+        <span class="is-size-4">Name: </span>
+        <span class="is-size-3">{{ background.name }}</span>
+      </div>
+      <div class="is-size-5">{{ background.description }}</div>
+    </div>
     <div class="background-tags">
-      <span>Boosts: </span>
+      <span class="is-size-4 has-text-weight-bold">Boosts: </span>
       <b-tag
         v-for="boost in background.boosts"
         :key="boost"
@@ -14,7 +19,7 @@
       </b-tag>
     </div>
     <div class="background-tags">
-      <span>Skills: </span>
+      <span class="is-size-4 has-text-weight-bold">Skills: </span>
       <b-tag
         v-for="skill in background.skills"
         :key="skill.name"
@@ -26,7 +31,7 @@
       </b-tag>
     </div>
     <div class="background-tags">
-      <span>Feats: </span>
+      <span class="is-size-4 has-text-weight-bold">Feats: </span>
       <b-tag
         v-for="feat in background.feats"
         :key="feat.name"
@@ -36,6 +41,12 @@
       >
         {{ feat.name }}
       </b-tag>
+    </div>
+    <!--  Action Bar  -->
+    <div class="buttons is-right">
+      <b-button disabled type="is-info">Edit</b-button>
+      <b-button disabled type="is-danger">Delete</b-button>
+      <b-button @click="close()" type="is-danger">Close</b-button>
     </div>
   </div>
 </template>
@@ -49,6 +60,10 @@ export default {
     background: {
       type: [Background],
       required: true
+    },
+    close: {
+      type: [Function],
+      required: true
     }
   },
   setup() {
@@ -60,7 +75,7 @@ export default {
 <style scoped lang="scss">
 @import "../../assets/styles";
 
-.background-base {
+.background-view-base {
   display: flex;
   flex-flow: column;
   padding: 3rem;
@@ -68,8 +83,12 @@ export default {
   background-color: $primary;
 
   div {
-    margin-bottom: 4rem;
+    margin-bottom: 1rem;
   }
+}
+
+.background-view-text {
+  margin-bottom: 3rem;
 }
 
 .background-tags {
