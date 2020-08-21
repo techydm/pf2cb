@@ -140,12 +140,6 @@ export default {
   background-color: $primary;
 }
 
-.form-inputs {
-  display: flex;
-  flex-flow: row;
-  flex-wrap: wrap;
-}
-
 .form-field {
   margin-bottom: 2rem;
 }

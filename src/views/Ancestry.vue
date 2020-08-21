@@ -19,7 +19,7 @@
     <!--  Modal  -->
     <b-modal :active.sync="isOpen" :can-cancel="false">
       <div class="ancestry-form-container">
-        <AncestryForm :cancel="close" />
+        <AncestryForm class="ancestry-form" :cancel="close" />
       </div>
     </b-modal>
   </div>

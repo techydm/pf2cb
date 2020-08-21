@@ -1,38 +1,103 @@
 <template>
   <div class="ancestry-form-base">
-    <!-- Name -->
-    <div class="form-field">
-      <b-field label="Name" custom-class="has-text-light">
-        <b-input v-model="ancestry.name" />
-      </b-field>
+    <div class="ancestry-form-inputs">
+      <!--  General Info  -->
+      <div>
+        <!-- Name -->
+        <div class="form-field">
+          <b-field label="Name" custom-class="has-text-light">
+            <b-input v-model="ancestry.name" />
+          </b-field>
+        </div>
+        <!-- HP -->
+        <div class="form-field">
+          <b-field label="HP" custom-class="has-text-light">
+            <b-input v-model="ancestry.hp" type="number" />
+          </b-field>
+        </div>
+        <!-- Size -->
+        <b-field label="Size" custom-class="has-text-light">
+          <b-select v-model="ancestry.size">
+            <option v-for="size in sizes" :key="size" :value="size">{{
+              size
+            }}</option>
+          </b-select>
+        </b-field>
+      </div>
+      <!--  Boosts and Flaws  -->
+      <div>
+        <!-- Ability Boosts -->
+        <div class="form-field">
+          <b-field label="Ability Boosts" custom-class="has-text-light">
+            <BoostInput @add-boost="addBoost" @remove-boost="removeBoost" />
+          </b-field>
+        </div>
+        <!-- Ability Flaws -->
+        <div class="form-field">
+          <b-field label="Ability Flaws" custom-class="has-text-light">
+            <BoostInput @add-boost="addBoost" @remove-boost="removeBoost" />
+          </b-field>
+        </div>
+      </div>
+      <!--  Tags  -->
+      <div>
+        <!-- Languages -->
+        <div class="form-field">
+          <b-field label="Languages" custom-class="has-text-light">
+            <b-taginput
+              v-model="ancestry.languages"
+              ellipsis
+              icon="label"
+              placeholder="Add a language"
+            >
+            </b-taginput>
+          </b-field>
+        </div>
+        <!-- Language Access -->
+        <div class="form-field">
+          <b-field label="Languages Access" custom-class="has-text-light">
+            <b-taginput
+              v-model="ancestry.languagesAccess"
+              ellipsis
+              icon="label"
+              placeholder="Add possible languages"
+            >
+            </b-taginput>
+          </b-field>
+        </div>
+        <!-- Traits -->
+        <div class="form-field">
+          <b-field label="Traits" custom-class="has-text-light">
+            <b-taginput
+              v-model="ancestry.traits"
+              ellipsis
+              icon="label"
+              placeholder="Add Traits"
+            >
+            </b-taginput>
+          </b-field>
+        </div>
+        <!-- Senses -->
+        <div class="form-field">
+          <b-field label="Senses" custom-class="has-text-light">
+            <b-taginput
+              v-model="ancestry.senses"
+              ellipsis
+              icon="label"
+              placeholder="Add senses"
+            >
+            </b-taginput>
+          </b-field>
+        </div>
+      </div>
     </div>
-    <!-- HP -->
-    <div class="form-field">
-      <b-field label="HP" custom-class="has-text-light">
-        <b-input v-model="ancestry.hp" type="number" />
-      </b-field>
-    </div>
-    <!-- Size -->
-    <b-field label="Primary Ability" custom-class="has-text-light">
-      <b-select v-model="ancestry.size">
-        <option v-for="size in sizes" :key="size" :value="size">{{
-          size
-        }}</option>
-      </b-select>
-    </b-field>
-    <!-- Ability Boosts -->
-    <b-field label="Ability Boosts" custom-class="has-text-light">
-      <BoostInput @add-boost="addBoost" @remove-boost="removeBoost" />
-    </b-field>
-    <!-- Ability Flaws -->
-    <b-field label="Ability Flaws" custom-class="has-text-light">
-      <BoostInput @add-boost="addBoost" @remove-boost="removeBoost" />
-    </b-field>
-    <!-- Languages -->
-    <!-- Language Access -->
-    <!-- Traits -->
-    <!-- Senses -->
     <!-- Heritages -->
+    <div></div>
+    <!--  Action Buttons  -->
+    <div class="buttons is-pulled-right">
+      <b-button @click="submit()" type="is-success">Submit</b-button>
+      <b-button @click="close()" type="is-danger">Cancel</b-button>
+    </div>
   </div>
 </template>
 
@@ -88,4 +153,22 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@import "../../assets/styles";
+
+.ancestry-form-base {
+  height: 100%;
+  width: 55rem;
+  background-color: $primary;
+}
+
+.ancestry-form-inputs {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.form-field {
+  margin-bottom: 2rem;
+}
+</style>
