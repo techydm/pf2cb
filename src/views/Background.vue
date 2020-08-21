@@ -6,7 +6,6 @@
         v-for="background in backgrounds"
         :key="background.id"
         :background="background"
-        class="background-card"
       />
     </div>
     <b-button

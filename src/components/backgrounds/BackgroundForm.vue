@@ -73,7 +73,7 @@
 <script lang="ts">
 import SkillInput from "@/components/utility/SkillInput.vue";
 import { ref, Ref } from "@vue/composition-api";
-import { Background, BOOSTS } from "@/shared/types/Backgrounds";
+import { Background } from "@/shared/types/Backgrounds";
 import {
   newBackground,
   addBoost,
@@ -82,6 +82,7 @@ import {
   removeSkill
 } from "@/services/backgrounds";
 import { Feat } from "@/shared/types/Feat";
+import { BOOSTS } from "@/shared/types/AbilityScores";
 
 interface BackgroundFormProps {
   cancel: Function;

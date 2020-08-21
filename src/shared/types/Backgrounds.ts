@@ -1,23 +1,6 @@
 import { Skill } from "@/shared/types/Skills";
 import { Feat } from "@/shared/types/Feat";
-
-export type Boosts =
-  | "strength"
-  | "dexterity"
-  | "constitution"
-  | "intelligence"
-  | "wisdom"
-  | "charisma"
-  | "free";
-export const BOOSTS = [
-  "strength",
-  "dexterity",
-  "constitution",
-  "intelligence",
-  "wisdom",
-  "charisma",
-  "free"
-];
+import { Boosts } from "@/shared/types/AbilityScores";
 
 export class Background {
   public id: number = 0;
