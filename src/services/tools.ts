@@ -4,8 +4,9 @@ import { Tool } from "@/shared/types/Tool";
 export default function toolList() {
   // List of tools that the user has access to
   const tools = ref([
-    new Tool("Character Creation", "/characters", "ra-aura"),
-    new Tool("Classes", "/classes", "ra-torch"),
+    new Tool("Character Creation", "/characters", "ra-player"),
+    new Tool("Ancestries", "/ancestries", "ra-double-team"),
+    new Tool("Classes", "/classes", "ra-sword"),
     new Tool("Backgrounds", "/backgrounds", "ra-wooden-sign"),
     new Tool("Feats", "/feats", "ra-player-pyromaniac")
   ]);
