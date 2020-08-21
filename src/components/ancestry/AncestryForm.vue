@@ -92,12 +92,27 @@
       </div>
     </div>
     <!-- Heritages -->
-    <div></div>
+    <div>
+      {{ ancestry.heritages }}
+    </div>
     <!--  Action Buttons  -->
     <div class="buttons is-pulled-right">
+      <b-button @click="isHeritageOpen = true" type="is-info"
+        >Add Heritage</b-button
+      >
       <b-button @click="submit()" type="is-success">Submit</b-button>
       <b-button @click="close()" type="is-danger">Cancel</b-button>
     </div>
+    <!--  Heritage Modal  -->
+    <b-modal :active.sync="isHeritageOpen" :can-cancel="false">
+      <div class="heritage-form-container">
+        <HeritagesForm
+          class="heritage-form"
+          :heritages="ancestry.heritages"
+          :cancel="closeModal"
+        />
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -107,6 +122,7 @@ import { Ancestry } from "@/shared/types/Ancestry";
 import { newAncestry } from "@/services/ancestries";
 import BoostInput from "@/components/utility/BoostInput.vue";
 import { Boosts } from "@/shared/types/AbilityScores";
+import HeritagesForm from "@/components/ancestry/HeritagesForm.vue";
 
 interface AncestryFormProps {
   cancel: Function;
@@ -114,7 +130,7 @@ interface AncestryFormProps {
 
 export default {
   name: "AncestryForm",
-  components: { BoostInput },
+  components: { HeritagesForm, BoostInput },
   props: {
     cancel: {
       type: [Function],
@@ -132,6 +148,12 @@ export default {
       "gargantuan"
     ]);
 
+    const isHeritageOpen: Ref<boolean> = ref(false);
+
+    function closeModal() {
+      isHeritageOpen.value = false;
+    }
+
     function submit() {
       // TODO: make submission
     }
@@ -148,7 +170,16 @@ export default {
       console.log(`Removing ${boost}`);
     }
 
-    return { ancestry, sizes, submit, close, addBoost, removeBoost };
+    return {
+      ancestry,
+      sizes,
+      isHeritageOpen,
+      submit,
+      close,
+      closeModal,
+      addBoost,
+      removeBoost
+    };
   }
 };
 </script>
@@ -158,7 +189,6 @@ export default {
 
 .ancestry-form-base {
   height: 100%;
-  width: 55rem;
   background-color: $primary;
 }
 
@@ -166,6 +196,20 @@ export default {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
+}
+
+.heritage-form-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.heritage-form {
+  overflow-y: hidden;
+  width: 55rem;
+  padding: 2rem;
+  border-radius: 2rem;
 }
 
 .form-field {

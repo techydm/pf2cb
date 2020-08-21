@@ -72,8 +72,7 @@ export default {
 
 .ancestry-form {
   overflow-y: hidden;
-  height: 45rem;
-  width: 35rem;
+  width: 55rem;
   padding: 2rem;
   border-radius: 2rem;
 }

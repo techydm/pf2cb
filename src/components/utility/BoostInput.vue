@@ -19,9 +19,11 @@
 <script lang="ts">
 import { Boosts, BOOSTS } from "@/shared/types/AbilityScores";
 
+interface BoostInputProps {}
+
 export default {
   name: "BoostInput",
-  setup(props: any, { emit }: any) {
+  setup(props: BoostInputProps, { emit }: any) {
     let boosts: Boosts[] = [];
     const existInBoosts = (x: Boosts) => boosts.includes(x);
     const isBoost = (x: string): x is Boosts => BOOSTS.includes(x);
