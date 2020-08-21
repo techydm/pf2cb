@@ -5,8 +5,16 @@
 </template>
 
 <script>
+import { Ancestry } from "@/shared/types/Ancestry";
+
 export default {
-  name: "AncestryCard"
+  name: "AncestryCard",
+  props: {
+    ancestry: {
+      type: [Ancestry],
+      required: true
+    }
+  }
 };
 </script>
 

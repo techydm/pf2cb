@@ -2,7 +2,11 @@
   <div class="container">
     <h1 class="title has-text-light">Ancestry</h1>
     <div class="ancestry-layout">
-      <AncestryCard v-for="ancestry in ancestries" :key="ancestry.id" />
+      <AncestryCard
+        v-for="ancestry in ancestries"
+        :key="ancestry.id"
+        :ancestry="ancestry"
+      />
     </div>
     <b-button
       type="is-info"
@@ -15,7 +19,7 @@
     <!--  Modal  -->
     <b-modal :active.sync="isOpen" :can-cancel="false">
       <div class="ancestry-form-container">
-        <AncestryForm />
+        <AncestryForm :cancel="close" />
       </div>
     </b-modal>
   </div>
