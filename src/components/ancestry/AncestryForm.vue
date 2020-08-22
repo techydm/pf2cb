@@ -23,6 +23,12 @@
             }}</option>
           </b-select>
         </b-field>
+        <!-- Speed -->
+        <div class="form-field">
+          <b-field label="Speed" custom-class="has-text-light">
+            <b-input v-model="ancestry.speed" type="number" />
+          </b-field>
+        </div>
       </div>
       <!--  Boosts and Flaws  -->
       <div>
@@ -35,7 +41,7 @@
         <!-- Ability Flaws -->
         <div class="form-field">
           <b-field label="Ability Flaws" custom-class="has-text-light">
-            <BoostInput @add-boost="addBoost" @remove-boost="removeBoost" />
+            <BoostInput @add-boost="addFlaw" @remove-boost="removeFlaw" />
           </b-field>
         </div>
       </div>
@@ -168,12 +174,28 @@ export default {
       props.cancel();
     }
 
+    // TODO: Migrate function to the ancestry service
     function addBoost(boost: Boosts) {
-      console.log(`Adding ${boost}`);
+      ancestry.value.abilityBoosts.push(boost);
     }
 
+    // TODO: Migrate function to the ancestry service
     function removeBoost(boost: Boosts) {
-      console.log(`Removing ${boost}`);
+      ancestry.value.abilityBoosts = ancestry.value.abilityBoosts.filter(
+        bsts => bsts !== boost
+      );
+    }
+
+    // TODO: Migrate function to the ancestry service
+    function addFlaw(flaw: Boosts) {
+      ancestry.value.abilityFlaws.push(flaw);
+    }
+
+    // TODO: Migrate function to the ancestry service
+    function removeFlaw(flaw: Boosts) {
+      ancestry.value.abilityFlaws = ancestry.value.abilityFlaws.filter(
+        flw => flw !== flaw
+      );
     }
 
     return {
@@ -184,7 +206,9 @@ export default {
       close,
       closeModal,
       addBoost,
-      removeBoost
+      removeBoost,
+      addFlaw,
+      removeFlaw
     };
   }
 };
