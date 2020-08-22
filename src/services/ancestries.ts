@@ -7,6 +7,7 @@ const wrkAncestry: Ref<Ancestry> = ref({});
 
 export function newAncestry(): Ref<Ancestry> {
   wrkAncestry.value = new Ancestry();
+
   return wrkAncestry;
 }
 
@@ -15,4 +16,17 @@ export function getAncestries(): Ref<Ancestry[]> {
 
   // return the backgrounds
   return ancestries;
+}
+
+export function addAncestry(ancestry: Ancestry): void {
+  // Check for duplicates
+  const ancestryNames = ancestries.value.map(ancest => ancest.name);
+  if (ancestryNames.includes(ancestry.name)) {
+    // TODO: Work on how notify user that a duplicate was submitted
+    return;
+  }
+
+  // TODO: Add ancestry to other sources ie. local file, cloud DB, etc.
+
+  ancestries.value.push(ancestry);
 }

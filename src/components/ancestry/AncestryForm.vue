@@ -93,7 +93,11 @@
     </div>
     <!-- Heritages -->
     <div>
-      {{ ancestry.heritages }}
+      <HeritagesCard
+        v-for="heritage in ancestry.heritages"
+        :key="heritage.name"
+        :heritage="heritage"
+      />
     </div>
     <!--  Action Buttons  -->
     <div class="buttons is-pulled-right">
@@ -119,10 +123,11 @@
 <script lang="ts">
 import { ref, Ref } from "@vue/composition-api";
 import { Ancestry } from "@/shared/types/Ancestry";
-import { newAncestry } from "@/services/ancestries";
+import { addAncestry, newAncestry } from "@/services/ancestries";
 import BoostInput from "@/components/utility/BoostInput.vue";
 import { Boosts } from "@/shared/types/AbilityScores";
 import HeritagesForm from "@/components/ancestry/HeritagesForm.vue";
+import HeritagesCard from "@/components/ancestry/HeritagesCard.vue";
 
 interface AncestryFormProps {
   cancel: Function;
@@ -130,7 +135,7 @@ interface AncestryFormProps {
 
 export default {
   name: "AncestryForm",
-  components: { HeritagesForm, BoostInput },
+  components: { HeritagesCard, HeritagesForm, BoostInput },
   props: {
     cancel: {
       type: [Function],
@@ -155,7 +160,8 @@ export default {
     }
 
     function submit() {
-      // TODO: make submission
+      addAncestry(ancestry.value);
+      props.cancel();
     }
 
     function close() {
@@ -213,6 +219,9 @@ export default {
 }
 
 .form-field {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 15rem;
   margin-bottom: 2rem;
 }
 </style>
