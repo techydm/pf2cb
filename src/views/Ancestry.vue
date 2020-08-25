@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <h1 class="title has-text-light">Backgrounds</h1>
-    <div class="backgrounds-layout">
-      <BackgroundCard
-        v-for="background in backgrounds"
-        :key="background.id"
-        :background="background"
+    <h1 class="title has-text-light">Ancestry</h1>
+    <div class="ancestry-layout">
+      <AncestryCard
+        v-for="ancestry in ancestries"
+        :key="ancestry.id"
+        :ancestry="ancestry"
       />
     </div>
     <b-button
@@ -18,35 +18,35 @@
     </b-button>
     <!--  Modal  -->
     <b-modal :active.sync="isOpen" :can-cancel="false">
-      <div class="background-form-container">
-        <BackgroundForm class="background-form" :cancel="close" />
+      <div class="ancestry-form-container">
+        <AncestryForm class="ancestry-form" :cancel="close" />
       </div>
     </b-modal>
   </div>
 </template>
 
 <script lang="ts">
-import BackgroundCard from "@/components/backgrounds/BackgroundCard.vue";
-import BackgroundForm from "@/components/backgrounds/BackgroundForm.vue";
+import AncestryForm from "@/components/ancestry/AncestryForm.vue";
+import AncestryCard from "@/components/ancestry/AncestryCard.vue";
 import { ref, Ref } from "@vue/composition-api";
-import { Background } from "@/shared/types/Backgrounds";
-import { getBackgrounds } from "@/services/backgrounds";
+import { Ancestry } from "@/shared/types/Ancestry";
+import { getAncestries } from "@/services/ancestries";
 
 export default {
-  name: "Background",
+  name: "Ancestry",
   components: {
-    BackgroundCard,
-    BackgroundForm
+    AncestryForm,
+    AncestryCard
   },
   setup() {
-    const backgrounds: Ref<Background[]> = getBackgrounds();
+    const ancestries: Ref<Ancestry[]> = getAncestries();
     const isOpen: Ref<boolean> = ref(false);
 
     function close(): void {
       isOpen.value = false;
     }
 
-    return { backgrounds, isOpen, close };
+    return { ancestries, isOpen, close };
   }
 };
 </script>
@@ -54,7 +54,7 @@ export default {
 <style scoped lang="scss">
 @import "../assets/styles";
 
-.backgrounds-layout {
+.ancestry-layout {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
@@ -63,17 +63,16 @@ export default {
   margin-bottom: 1rem;
 }
 
-.background-form-container {
+.ancestry-form-container {
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.background-form {
+.ancestry-form {
   overflow-y: hidden;
-  height: 45rem;
-  width: 35rem;
+  width: 55rem;
   padding: 2rem;
   border-radius: 2rem;
 }
@@ -91,13 +90,13 @@ export default {
 }
 
 @media only screen and (max-width: 600px) {
-  .backgrounds-layout {
+  .ancestry-layout {
     height: 45rem;
   }
 }
 
 @media only screen and (min-width: 600px) {
-  .backgrounds-layout {
+  .ancestry-layout {
     height: 50rem;
   }
 }

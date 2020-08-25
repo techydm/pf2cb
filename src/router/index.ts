@@ -16,6 +16,11 @@ const routes: Array<RouteConfig> = [
     component: () => import("../views/About.vue")
   },
   {
+    path: "/ancestries",
+    name: "ancestry",
+    component: () => import("../views/Ancestry.vue")
+  },
+  {
     path: "/backgrounds",
     name: "background",
     component: () => import("../views/Background.vue")

@@ -1,8 +1,9 @@
-// Store
 import { ref, Ref } from "@vue/composition-api";
-import { Background, BOOSTS, Boosts } from "@/shared/types/Backgrounds";
+import { Background } from "@/shared/types/Backgrounds";
 import { Skill } from "@/shared/types/Skills";
+import { Boosts, BOOSTS } from "@/shared/types/AbilityScores";
 
+// Store
 const backgrounds: Ref<Background[]> = ref([]);
 const wrkBackground: Ref<Background> = ref({});
 

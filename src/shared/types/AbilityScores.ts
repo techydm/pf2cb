@@ -13,3 +13,21 @@ export const ABILITYSCORES = [
   "wisdom",
   "charisma"
 ];
+
+export type Boosts =
+  | "strength"
+  | "dexterity"
+  | "constitution"
+  | "intelligence"
+  | "wisdom"
+  | "charisma"
+  | "free";
+export const BOOSTS = [
+  "strength",
+  "dexterity",
+  "constitution",
+  "intelligence",
+  "wisdom",
+  "charisma",
+  "free"
+];
