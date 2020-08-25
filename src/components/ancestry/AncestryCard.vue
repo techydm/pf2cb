@@ -30,7 +30,7 @@
       </div>
       <!--  Modal  -->
       <b-modal :active.sync="ancestryView" :can-cancel="false">
-        <AncestryView :close="closeModal" />
+        <AncestryView :ancestry="ancestry" :close="closeModal" />
       </b-modal>
     </div>
   </div>
