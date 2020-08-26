@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import FeatForm from "@/components/classes/form/FeatForm.vue";
-import { Ref, ref, set } from "@vue/composition-api";
+import { ref, Ref } from "@vue/composition-api";
 export default {
   name: "feats",
   components: {

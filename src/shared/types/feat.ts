@@ -4,7 +4,7 @@ export class Feat {
 }
 
 export class TypeFeat {
-  public type!: string;
-  public name!: string;
-  public description!: string;
+  public type: string[] = [];
+  public name: string[] = [];
+  public description: string[] = [];
 }
