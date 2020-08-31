@@ -1,10 +1,6 @@
 export class Feat {
-  public name!: string;
-  public description!: string;
-}
-
-export class TypeFeat {
+  public id: number = 0;
+  public name: string = "";
   public type: string[] = [];
-  public name: string[] = [];
-  public description: string[] = [];
+  public description: string = "";
 }

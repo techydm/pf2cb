@@ -26,6 +26,8 @@
 
 <script lang="ts">
 import FeatForm from "@/components/classes/form/FeatForm.vue";
+import { Feat } from "@/shared/types/feat";
+import { getFeats } from "@/services/feats";
 import { ref, Ref } from "@vue/composition-api";
 export default {
   name: "feats",
@@ -33,6 +35,7 @@ export default {
     FeatForm
   },
   setup() {
+    const feats: Ref<Feat[]> = getFeats();
     const isOpen: Ref<boolean> = ref(false);
 
     function close() {
