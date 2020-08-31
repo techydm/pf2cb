@@ -18,7 +18,7 @@ export function newFeat(): Ref<Feat> {
   return wrkFeat;
 }
 
-export function getFeat(): Ref<Feat> {
+export function getFeat(): Ref<Feat[]> {
   //Data needs to be pulled from external sources
 
   //return Feat
@@ -28,11 +28,11 @@ export function getFeat(): Ref<Feat> {
 export function addFeat(feat: Feat): void {
   //check for duplicates
   const featNames = feats.value.map(ancest => ancest.name);
-  if (featNames.includes(feats.name)) {
+  if (featNames.includes(feat.name)) {
     //TODO: Notify user that a duplicat was submittet
     return;
   }
-  feats.id = feats.value.lenght + 2;
+  feat.id = feats.value.length + 2;
 
   //TODO: Add feat to other sources
 

@@ -1,21 +1,20 @@
 <template>
-  <div class="ancestry-form-base">
-    <div class="ancestry-form-inputs">
-      <!--  General Info  -->
-      <div>
-        <!-- Name -->
-        <div class="form-field">
-          <b-field label="Name" custom-class="has-text-light">
-            <b-input v-model="feat.name" />
-          </b-field>
-        </div>
+  <div class="container">
+    <h1>This is a placeholder</h1>
+    <!-- Name -->
+    <div class="form-field">
+      <b-field label="Name" custom-class="has-text-light">
+        <b-input v-model="feat.name" />
+      </b-field>
+    </div>
+  </div>
 </template>
 
 <script>
 import { Ref, ref } from "@vue/composition-api";
-//import { Feat } from "@/shared/types/Feat";
-import FeatForm from "/componebts/feats/Featform.vue";
-import FeatCard from "/componebts/feats/FeatCard.vue";
+import { Feat } from "@/shared/types/feat";
+//import FeatForm from "/componebts/feats/Featform.vue";
+//import FeatCard from "/componebts/feats/FeatCard.vue";
 
 export default {
   name: "FeatForm",
@@ -24,39 +23,44 @@ export default {
       type: [Function],
       required: true
     }
-  
-}
+  }
 
-//const isFeatOpen: Ref<boolean> = ref(false);
-}
+  //const isFeatOpen: Ref<boolean> = ref(false);
+};
 </script>
 
 <style scoped lang="scss">
-@import "../../../assets/styles";
+@import "../../assets/styles";
 
-.cls-base {
+.ancestry-form-base {
   height: 100%;
   background-color: $primary;
-  padding: 1rem;
 }
 
-.cls-inputs {
+.ancestry-form-inputs {
   display: flex;
-  flex-flow: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
+  justify-content: space-around;
 }
 
-.cls-icon {
-  height: 7.5rem;
-  width: 7.5rem;
-  border-radius: 50%;
-  background-color: $primary;
-  border: solid 0.1rem $accent;
-  text-align: center;
-  margin: 1rem 0 0 1rem;
+.heritage-form-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.cls-info {
-  margin: 2rem 0 0 2.5rem;
+.heritage-form {
+  overflow-y: hidden;
+  width: 55rem;
+  padding: 2rem;
+  border-radius: 2rem;
+}
+
+.form-field {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 15rem;
+  margin-bottom: 2rem;
 }
 </style>

@@ -1,8 +1,3 @@
-<!--Name-->
-<!--Tags -->
-<!--Level-->
-<!--Description-->
-<!--Prerequisites (which aren't required)-->
 <template>
   <div class="container">
     <h1 class="title has-text-light">Feats</h1>
@@ -15,7 +10,7 @@
       size="is-large"
       @click="isOpen = true"
     >
-      <i class="ra ra-rune-stone ra-fw ra-3x" />
+      <i class="ra ra-forging ra-fw ra-3x" />
     </b-button>
     <!--  Modal  -->
     <b-modal full-screen :active.sync="isOpen" :can-cancel="false">
@@ -25,9 +20,10 @@
 </template>
 
 <script lang="ts">
-import FeatForm from "@/components/classes/form/FeatForm.vue";
+import FeatForm from "@/components/feats/FeatForm.vue";
+//import FeatCard
 import { Feat } from "@/shared/types/feat";
-import { getFeats } from "@/services/feats";
+import { getFeat } from "@/services/feats";
 import { ref, Ref } from "@vue/composition-api";
 export default {
   name: "feats",
@@ -35,7 +31,7 @@ export default {
     FeatForm
   },
   setup() {
-    const feats: Ref<Feat[]> = getFeats();
+    const feats: Ref<Feat[]> = getFeat();
     const isOpen: Ref<boolean> = ref(false);
 
     function close() {
