@@ -24,13 +24,14 @@
 <script lang="ts">
 import { Feat } from "@/shared/types/feat";
 import FeatForm from "@/components/feats/FeatForm.vue";
-//import FeatCard
+//import FeatCard from "@/components/feats/FeatCard.vue";
 import { getFeat } from "@/services/feats";
 import { ref, Ref } from "@vue/composition-api";
 export default {
   name: "feats",
   components: {
     FeatForm
+    //FeatCard
   },
   setup() {
     const feats: Ref<Feat[]> = getFeat();

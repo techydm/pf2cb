@@ -1,29 +1,65 @@
-<!--first draft gets ra-rune-stone as forging button  --->
-<!---Displays feat cards--->
-<!--hilights tags--->
 <template>
   <div>
-    <div @click="openModal()" class="background-base">
-      <div class="background-text">
-        <div class="background-text-name is-size-5 has-text-weight-bold">
-          {{ ancestry.name }}
+    <div @click="openModal()" class="feat-card-base">
+      <div class="feat-card-text">
+        <div class="fead-card-text-name is-size-5 has-text-weight-bold">
+          {{ feat.name }}
         </div>
+        <div>{{ feat.description.substring(0, 100) }}...</div>
       </div>
-      <div class="background-tags">
-        <span class="is-size-5 has-text-weight-bold">Boosts: </span>
+      <div class="feat-tags">
+        <span class="is-size-5 has-text-weight-bold">Tags: </span>
+        <b-tag
+          v-for="type in feat.type"
+          :key="type"
+          class="is-info feat-card-tag"
+          size="is-medium"
+        >
+          {{ type }}
+        </b-tag>
       </div>
-      <!--  Modal  -->
-      <b-modal :active.sync="ancestryView" :can-cancel="false">
-        <AncestryView :ancestry="ancestry" :close="closeModal" />
-      </b-modal>
     </div>
+    <!--  Modal -->
+    <b-modal :active.sync="featView" :can-cancel="false">
+      <FeatView :feat="feat" :close="closeModal" />
+    </b-modal>
   </div>
 </template>
+
+<script lang="ts">
+import FeatView from "@/components/featsFeatView.vue";
+import { Feat } from "@/shared/types/feat";
+import { ref, Ref } from "@vue/composition-api";
+
+export default {
+  name: "FeatCard",
+  components: {
+    FeatView
+  },
+  props: {
+    feat: {
+      type: [Feat],
+      required: true
+    }
+  },
+  setup() {
+    const featView: Ref<boolean> = ref(false);
+    function openModal() {
+      featView.value = true;
+    }
+    function closeModal() {
+      featView.value = false;
+    }
+
+    return { featView, openModal, closeModal };
+  }
+};
+</script>
 
 <style scoped lang="scss">
 @import "../../assets/styles";
 
-.background-base {
+.feat-card-base {
   height: 17rem;
   width: 40rem;
   padding: 1rem 2rem 1rem 2rem;
@@ -31,20 +67,20 @@
   background-color: $primary;
 }
 
-.background-text {
+.feat-card-text {
   margin-bottom: 1rem;
 }
 
-.background-text-name {
+.feat-card-text-name {
   margin-bottom: 1rem;
 }
 
-.background-tags {
+.feat-card-tags {
   display: flex;
   align-items: center;
 }
 
-.background-tag {
+.feat-card-tag {
   margin: 0.5rem;
 }
 </style>

@@ -5,6 +5,27 @@
   </div>
 </template>
 
+<script lang="ts">
+import { Feat } from "@/shared/types/feat";
+
+export default {
+  name: "FeatView",
+  props: {
+    feat: {
+      type: [Feat],
+      required: true
+    },
+    close: {
+      type: [Function],
+      required: true
+    }
+  },
+  setup() {
+    return {};
+  }
+};
+</script>
+
 <style scoped lang="scss">
 @import "../../assets/styles";
 
