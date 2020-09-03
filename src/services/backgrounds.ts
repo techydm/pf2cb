@@ -5,7 +5,7 @@ import { Boosts, BOOSTS } from "@/shared/types/AbilityScores";
 
 // Store
 const backgrounds: Ref<Background[]> = ref([]);
-const wrkBackground: Ref<Background> = ref({});
+const wrkBackground: Ref<Background> = ref(new Background());
 
 // Validators
 const isBoost = (x: string): x is Boosts => BOOSTS.includes(x);

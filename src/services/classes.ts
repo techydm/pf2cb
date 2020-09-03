@@ -11,7 +11,7 @@ import { DspSpellRow } from "@/services/spellForm";
 
 // Store
 export const classes: Ref<Array<CharacterClass>> = ref([]);
-export const workingClass: Ref<CharacterClass> = ref({});
+export const workingClass: Ref<CharacterClass> = ref(new CharacterClass());
 
 // Functions
 export function newClass() {

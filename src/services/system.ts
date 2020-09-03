@@ -5,7 +5,7 @@ import { createDir, Dir, readDir } from "tauri/api/fs";
 // TODO: app init function to handle the building of app directory
 
 export function appInit() {
-  createDir("", { dir: Dir.App })
+  createDir("save_files", { dir: Dir.App })
     .then(res => {
       console.log(res);
     })
@@ -13,7 +13,7 @@ export function appInit() {
       console.log(err);
     });
 
-  readDir("", { dir: Dir.App })
+  readDir("save_files", { dir: Dir.App })
     .then(res => {
       console.log(res);
     })
