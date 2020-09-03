@@ -14,7 +14,10 @@ const wrkFeat: Ref<Feat> = ref({});
 
 export function newFeat(): Ref<Feat> {
   wrkFeat.value = new Feat();
+  return wrkFeat;
+}
 
+export function getWrkFeat(): Ref<Feat> {
   return wrkFeat;
 }
 
@@ -25,16 +28,7 @@ export function getFeat(): Ref<Feat[]> {
   return feats;
 }
 
-export function addFeat(feat: Feat): void {
-  //check for duplicates
-  const featNames = feats.value.map(ancest => ancest.name);
-  if (featNames.includes(feat.name)) {
-    //TODO: Notify user that a duplicat was submittet
-    return;
-  }
-  feat.id = feats.value.length + 2;
-
-  //TODO: Add feat to other sources
-
+export function submitFeat(feat: Feat): void {
+  //TODO same as in Background
   feats.value.push(feat);
 }

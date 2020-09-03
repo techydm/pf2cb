@@ -1,20 +1,46 @@
 <template>
-  <div class="container">
-    <h1>This is a placeholder</h1>
-    <!-- Name -->
+  <div class="form-base">
+    <!--Name-->
     <div class="form-field">
       <b-field label="Name" custom-class="has-text-light">
         <b-input v-model="feat.name" />
       </b-field>
     </div>
+    <!--Tags/type-->
+    <div class="form-field">
+      <b-field label="tags/type" custom-class="has-text-light">
+        <b-taginput
+          v-model="tags"
+          ellipsis
+          icon="label"
+          placeholder="Add the feat tags"
+        >
+        </b-taginput>
+      </b-field>
+    </div>
+    <!--Description-->
+    <div class="form-field">
+      <b-field label="Description" custom-class="has-text-light">
+        <b-input v-model="feat.description" />
+      </b-field>
+    </div>
+    <!--  Action Buttons  -->
+    <div class="buttons is-pulled-right">
+      <b-button @click="submit()" type="is-success">Submit</b-button>
+      <b-button @click="close()" type="is-danger">Cancel</b-button>
+    </div>
   </div>
 </template>
 
-<script>
-import { Ref, ref } from "@vue/composition-api";
+<script lang="ts">
+import { ref, Ref } from "@vue/composition-api";
 import { Feat } from "@/shared/types/feat";
-//import FeatForm from "/componebts/feats/Featform.vue";
+import { newFeat, getWrkFeat, getFeat, submitFeat } from "@/services/feats";
 //import FeatCard from "/componebts/feats/FeatCard.vue";
+
+interface FeatFormProps {
+  cancel: Function;
+}
 
 export default {
   name: "FeatForm",
@@ -23,44 +49,40 @@ export default {
       type: [Function],
       required: true
     }
-  }
+  },
+  setup(props: FeatFormProps) {
+    const feat: Ref<Feat> = newFeat();
 
-  //const isFeatOpen: Ref<boolean> = ref(false);
+    function submit() {
+      submitFeat(feat.value);
+      props.cancel();
+    }
+
+    function close() {
+      props.cancel();
+    }
+
+    const selected: Ref<any> = ref(null);
+
+    return {
+      feat,
+      submit,
+      close
+    };
+  }
 };
+//const isFeatOpen: Ref<boolean> = ref(false);
 </script>
 
 <style scoped lang="scss">
 @import "../../assets/styles";
 
-.ancestry-form-base {
+.form-base {
   height: 100%;
   background-color: $primary;
 }
 
-.ancestry-form-inputs {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-}
-
-.heritage-form-container {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.heritage-form {
-  overflow-y: hidden;
-  width: 55rem;
-  padding: 2rem;
-  border-radius: 2rem;
-}
-
 .form-field {
-  display: flex;
-  flex-flow: row wrap;
-  max-width: 15rem;
   margin-bottom: 2rem;
 }
 </style>
