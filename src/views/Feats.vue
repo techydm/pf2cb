@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="title has-text-light">Feats</h1>
-    <div class="backgrounds-layout">
+    <div class="feat-layout">
       <FeatCard v-for="feat in feats" :key="feat.id" :feat="feat" />
     </div>
     <b-button
@@ -62,19 +62,6 @@ export default {
   width: 35rem;
   padding: 2rem;
   border-radius: 2rem;
-}
-
-.class-card {
-  margin-top: 2rem;
-}
-
-.classes-layout {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-
-  overflow-y: auto;
-  margin-bottom: 1rem;
 }
 
 .new-button {

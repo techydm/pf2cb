@@ -8,7 +8,7 @@
     </div>
     <!--Tags/type-->
     <div class="form-field">
-      <b-field label="tags/type" custom-class="has-text-light">
+      <b-field label="tags" custom-class="has-text-light">
         <b-taginput
           v-model="feat.type"
           icon="label"
@@ -77,8 +77,8 @@ export default {
 @import "../../assets/styles";
 
 .form-base {
-  height: 100%;
-  max-height: min-content;
+  //height: 100%;
+  //max-height: min-content;
   background-color: $primary;
 }
 
