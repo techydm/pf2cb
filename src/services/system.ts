@@ -105,6 +105,10 @@ async function writeFileData(
   }
 }
 
+async function updateConfig(config: SystemConfig): Promise<void> {
+  // stuff
+}
+
 // External functions
 export async function appInit(): Promise<void> {
   // Get the app configs
@@ -157,7 +161,11 @@ export function getAppDir(): Ref<string> {
 }
 
 // TODO: app migration function for when the app directory is moved
-// export async function appMigration(filePath: string): Promise<void> {}
+export async function appMigration(filePath: string): Promise<void> {
+  // Set new app directory and save it to the config
+  // Copy files from old directory to new one
+  // Delete old files and directory
+}
 
 export async function saveFile(
   fileType: FileTypes,
