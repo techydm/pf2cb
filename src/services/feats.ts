@@ -1,9 +1,9 @@
 import { ref, Ref } from "@vue/composition-api";
-import { Feat } from "@/shared/types/feat";
+import { Feat } from "@/shared/types/Feat";
 
 const feats: Ref<Feat[]> = ref([]);
 
-const wrkFeat: Ref<Feat> = ref({});
+const wrkFeat: Ref<Feat> = ref(new Feat());
 
 export function newFeat(): Ref<Feat> {
   wrkFeat.value = new Feat();

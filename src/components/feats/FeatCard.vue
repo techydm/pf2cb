@@ -32,7 +32,7 @@
 
 <script lang="ts">
 import FeatView from "@/components/feats/FeatView.vue";
-import { Feat } from "@/shared/types/feat";
+import { Feat } from "@/shared/types/Feat";
 import { ref, Ref } from "@vue/composition-api";
 
 export default {

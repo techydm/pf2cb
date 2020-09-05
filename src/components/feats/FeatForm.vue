@@ -33,7 +33,7 @@
 
 <script lang="ts">
 import { ref, Ref } from "@vue/composition-api";
-import { Feat } from "@/shared/types/feat";
+import { Feat } from "@/shared/types/Feat";
 import { newFeat, getWrkFeat, getFeat, submitFeat } from "@/services/feats";
 
 interface FeatFormProps {

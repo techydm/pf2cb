@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { Feat } from "@/shared/types/feat";
+import { Feat } from "@/shared/types/Feat";
 
 export default {
   name: "FeatView",

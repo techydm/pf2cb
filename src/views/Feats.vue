@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import { Feat } from "@/shared/types/feat";
+import { Feat } from "@/shared/types/Feat";
 import FeatForm from "@/components/feats/FeatForm.vue";
 import FeatCard from "@/components/feats/FeatCard.vue";
 import { getFeat } from "@/services/feats";
