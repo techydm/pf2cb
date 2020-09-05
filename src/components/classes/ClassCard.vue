@@ -2,8 +2,8 @@
   <div class="cls-base">
     <img
       class="cls-icon"
-      alt="class icon"
-      src="@/assets/pf2class_icon/Druid.png"
+      alt="Class Icon"
+      src="@/assets/pf2class_icon/druid.png"
     />
     <div class="cls-info">
       <div>Name: {{ cls.name }}</div>

@@ -32,9 +32,9 @@
 </template>
 
 <script lang="ts">
-import { ref, Ref } from "@vue/composition-api";
+import { Ref } from "@vue/composition-api";
 import { Feat } from "@/shared/types/Feat";
-import { newFeat, getWrkFeat, getFeat, submitFeat } from "@/services/feats";
+import { newFeat, submitFeat } from "@/services/feats";
 
 interface FeatFormProps {
   cancel: Function;
@@ -61,8 +61,6 @@ export default {
       props.cancel();
     }
 
-    const selected: Ref<any> = ref(null);
-
     return {
       feat,
       submit,
@@ -70,15 +68,12 @@ export default {
     };
   }
 };
-//const isFeatOpen: Ref<boolean> = ref(false);
 </script>
 
 <style scoped lang="scss">
 @import "../../assets/styles";
 
 .form-base {
-  //height: 100%;
-  //max-height: min-content;
   background-color: $primary;
 }
 

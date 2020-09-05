@@ -58,7 +58,6 @@ export default {
 
 .feat-form {
   overflow-y: hidden;
-  height: 45rem;
   width: 35rem;
   padding: 2rem;
   border-radius: 2rem;

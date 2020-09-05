@@ -1,5 +1,5 @@
 <template>
-  <!--Dsiplaying all the feat data -->
+  <!--Displaying all the feat data -->
   <div class="feat-view-base">
     <!--name--->
     <div class="feat-view-text">
