@@ -5,7 +5,7 @@
       <img
         class="cls-icon"
         alt="Class Icon"
-        src="@/assets/pf2class_icon/druid.png"
+        src="@/assets/pf2class_icon/Druid.png"
       />
       <!--  General Info  -->
       <div class="cls-info">
