@@ -14,11 +14,12 @@
 <script lang="ts">
 import { ref, Ref } from "@vue/composition-api";
 import { open } from "tauri/api/dialog";
+import { getAppDir } from "@/services/system";
 
 export default {
   name: "SaveFolder",
   setup() {
-    const appDir: Ref<any> = ref("");
+    const appDir: Ref<any> = getAppDir();
 
     function openDialog() {
       open({ directory: true, multiple: false }).then(filepath => {

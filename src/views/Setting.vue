@@ -5,17 +5,23 @@
     <div>
       <b-button @click="appInit()">Click me</b-button>
     </div>
+    <div>
+      <b-button @click="saveFile(0, { name: 'Justin', age: 26 })"
+        >Save</b-button
+      >
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import SaveFolder from "@/components/settings/SaveFolder.vue";
-import { appInit } from "@/services/system";
+import { appInit, saveFile } from "@/services/system";
+
 export default {
   name: "setting",
   components: { SaveFolder },
   setup() {
-    return { appInit };
+    return { appInit, saveFile };
   }
 };
 </script>
