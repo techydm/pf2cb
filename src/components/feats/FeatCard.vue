@@ -3,9 +3,9 @@
     <div @click="openModal()" class="feat-card-base">
       <div class="feat-card-text">
         <div class="fead-card-text-name is-size-5 has-text-weight-bold">
+          Name:
           {{ feat.name }}
         </div>
-        <div>{{ feat.description.substring(0, 100) }}...</div>
       </div>
       <div class="feat-tags">
         <span class="is-size-5 has-text-weight-bold">Tags: </span>
@@ -14,9 +14,16 @@
           :key="type"
           class="is-info feat-card-tag"
           size="is-medium"
+          aria-close-label="Close tag"
         >
           {{ type }}
         </b-tag>
+      </div>
+      <div class="feat-card-text">
+        <div class="fead-card-text-name is-size-5">
+          <span class="has-text-weight-bold">Description: </span>
+          {{ feat.description.substring(0, 1000) }}...
+        </div>
       </div>
     </div>
     <!--  Modal -->
@@ -27,7 +34,7 @@
 </template>
 
 <script lang="ts">
-import FeatView from "@/components/featsFeatView.vue";
+import FeatView from "@/components/feats/FeatView.vue";
 import { Feat } from "@/shared/types/feat";
 import { ref, Ref } from "@vue/composition-api";
 

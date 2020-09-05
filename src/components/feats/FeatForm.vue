@@ -10,8 +10,7 @@
     <div class="form-field">
       <b-field label="tags/type" custom-class="has-text-light">
         <b-taginput
-          v-model="tags"
-          ellipsis
+          v-model="feat.type"
           icon="label"
           placeholder="Add the feat tags"
         >
@@ -36,7 +35,6 @@
 import { ref, Ref } from "@vue/composition-api";
 import { Feat } from "@/shared/types/feat";
 import { newFeat, getWrkFeat, getFeat, submitFeat } from "@/services/feats";
-//import FeatCard from "/componebts/feats/FeatCard.vue";
 
 interface FeatFormProps {
   cancel: Function;
@@ -50,6 +48,7 @@ export default {
       required: true
     }
   },
+
   setup(props: FeatFormProps) {
     const feat: Ref<Feat> = newFeat();
 

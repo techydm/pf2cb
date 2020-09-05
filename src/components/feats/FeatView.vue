@@ -1,7 +1,34 @@
 <template>
   <!--Dsiplaying all the feat data -->
-  <div>
-    <h1>Placeholder</h1>
+  <div class="feat-view-base">
+    <!--name--->
+    <div class="feat-view-text">
+      <span class="has-text-weight-bold">Name: </span>
+      {{ feat.name }}
+    </div>
+    <!--tags--->
+    <div class="feat-tags">
+      <span class="has-text-weight-bold">Tags: </span>
+      <b-tag
+        v-for="type in feat.type"
+        :key="type"
+        class="is-info feat-card-tag"
+        size="is-medium"
+        aria-close-label="Close tag"
+      >
+        {{ type }}
+      </b-tag>
+    </div>
+    <!--description--->
+    <div class="feat-view-text">
+      <span class="has-text-weight-bold">Description: </span>
+      {{ feat.description }}
+    </div>
+    <div class="buttons is-right">
+      <b-button disabled type="is-info">Edit</b-button>
+      <b-button disabled type="is-danger">Delete</b-button>
+      <b-button @click="close()" type="is-danger">Close</b-button>
+    </div>
   </div>
 </template>
 
@@ -45,12 +72,12 @@ export default {
   margin-bottom: 3rem;
 }
 
-.background-tags {
+.feat-tags {
   display: flex;
   align-items: center;
 }
 
-.background-tag {
+.feat-tag {
   margin: 0.5rem;
 }
 </style>

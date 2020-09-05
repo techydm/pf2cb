@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <h1 class="title has-text-light">Feats</h1>
-    <div>
-      <h2>Placeholder for the feat cards</h2>
+    <div class="backgrounds-layout">
+      <FeatCard v-for="feat in feats" :key="feat.id" :feat="feat" />
     </div>
     <b-button
       type="is-info"
@@ -24,14 +24,14 @@
 <script lang="ts">
 import { Feat } from "@/shared/types/feat";
 import FeatForm from "@/components/feats/FeatForm.vue";
-//import FeatCard from "@/components/feats/FeatCard.vue";
+import FeatCard from "@/components/feats/FeatCard.vue";
 import { getFeat } from "@/services/feats";
 import { ref, Ref } from "@vue/composition-api";
 export default {
   name: "feats",
   components: {
+    FeatCard,
     FeatForm
-    //FeatCard
   },
   setup() {
     const feats: Ref<Feat[]> = getFeat();
