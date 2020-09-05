@@ -3,12 +3,10 @@
     <div @click="openModal()" class="feat-card-base">
       <div class="feat-card-text">
         <div class="fead-card-text-name is-size-5 has-text-weight-bold">
-          Name:
           {{ feat.name }}
         </div>
       </div>
       <div class="feat-tags">
-        <span class="is-size-5 has-text-weight-bold">Tags: </span>
         <b-tag
           v-for="type in feat.type"
           :key="type"
@@ -21,8 +19,7 @@
       </div>
       <div class="feat-card-text">
         <div class="fead-card-text-name is-size-5">
-          <span class="has-text-weight-bold">Description: </span>
-          {{ feat.description.substring(0, 1000) }}...
+          {{ feat.description.substring(0, 100) }}...
         </div>
       </div>
     </div>
@@ -71,6 +68,7 @@ export default {
   width: 40rem;
   padding: 1rem 2rem 1rem 2rem;
   border-radius: 2.5rem;
+  margin-bottom: 1rem;
   background-color: $primary;
 }
 

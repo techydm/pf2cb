@@ -12,7 +12,7 @@
       <b-tag
         v-for="type in feat.type"
         :key="type"
-        class="is-info feat-card-tag"
+        class="is-info feat-card-tags"
         size="is-medium"
         aria-close-label="Close tag"
       >
@@ -75,6 +75,12 @@ export default {
 .feat-tags {
   display: flex;
   align-items: center;
+}
+
+.feat-card-tags {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5em;
 }
 
 .feat-tag {

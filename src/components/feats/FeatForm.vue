@@ -20,7 +20,7 @@
     <!--Description-->
     <div class="form-field">
       <b-field label="Description" custom-class="has-text-light">
-        <b-input v-model="feat.description" />
+        <b-input type="textarea" minlength="15" v-model="feat.description" />
       </b-field>
     </div>
     <!--  Action Buttons  -->
@@ -78,6 +78,7 @@ export default {
 
 .form-base {
   height: 100%;
+  max-height: min-content;
   background-color: $primary;
 }
 
