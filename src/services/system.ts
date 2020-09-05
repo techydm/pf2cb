@@ -2,7 +2,6 @@ import {
   BaseDirectory,
   createDir,
   Dir,
-  FileEntry,
   readDir,
   readTextFile,
   writeFile
@@ -14,7 +13,7 @@ class SystemConfig {
   appDir: string = "";
 }
 
-enum FileTypes {
+export enum FileTypes {
   Class = 0,
   Background = 1,
   Ancestry = 2,
@@ -106,7 +105,8 @@ async function writeFileData(
   }
 }
 
-export async function appInit() {
+// External functions
+export async function appInit(): Promise<void> {
   // Get the app configs
   const configsJSON = await readTextFile("pf2cb/setting.json", {
     dir: Dir.Config
@@ -143,6 +143,7 @@ export async function appInit() {
     });
   });
 
+  // Create empty application files for future use
   Files.map(async file => {
     await getFileData(file.fileType).catch(() => {
       const fileName = getFileName(file.fileType);
@@ -154,8 +155,10 @@ export async function appInit() {
 export function getAppDir(): Ref<string> {
   return appDirectory;
 }
+
 // TODO: app migration function for when the app directory is moved
-// TODO: Generic save function that specifies the object being saved and the record itself
+// export async function appMigration(filePath: string): Promise<void> {}
+
 export async function saveFile(
   fileType: FileTypes,
   content: any
