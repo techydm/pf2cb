@@ -11,11 +11,17 @@
       <div>Hp: {{ cls.baseHp }}</div>
       <div>Spellcaster: {{ cls.spellSlots.length > 0 }}</div>
     </div>
+    <!--  Modal  -->
+    <b-modal :active.sync="classView" :can-cancel="false">
+      <ClassView :cls="cls" :close="closeModal" />
+    </b-modal>
   </div>
 </template>
 
 <script lang="ts">
-import { CharacterClass } from "@/shared/types/class";
+import { CharacterClass } from "@/shared/types/Class";
+import ClassView from "@/components/classes/ClassView.vue";
+import { Ref, ref } from "@vue/composition-api";
 
 export default {
   name: "classCard",
@@ -25,8 +31,23 @@ export default {
       required: true
     }
   },
+  components: {
+    ClassView
+  },
   setup() {
-    return {};
+    const classView: Ref<boolean> = ref(false);
+    function openModal() {
+      classView.value = true;
+    }
+    function closeModal() {
+      classView.value = false;
+    }
+
+    return {
+      classView,
+      openModal,
+      closeModal
+    };
   }
 };
 </script>

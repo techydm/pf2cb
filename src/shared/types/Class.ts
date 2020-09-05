@@ -1,27 +1,14 @@
-export type AbilityScores =
-  | "strength"
-  | "dexterity"
-  | "constitution"
-  | "intelligence"
-  | "wisdom"
-  | "charisma";
-export const ABILITYSCORES = [
-  "strength",
-  "dexterity",
-  "constitution",
-  "intelligence",
-  "wisdom",
-  "charisma"
-];
-export type Mastery = "trained" | "expert" | "master" | "legend";
-export const MASTERY = ["trained", "expert", "master", "legend"];
+import { Mastery } from "@/shared/types/Mastery";
+import { AbilityScores } from "@/shared/types/AbilityScores";
+import { Skill } from "@/shared/types/Skills";
+
 export type Buffs =
   | "class"
   | "skill"
   | "general"
   | "skill_increase"
   | "ability_boost"
-  | "ancestory";
+  | "ancestry";
 export const BUFFS = [
   { key: "class", value: "Class Feat" },
   { key: "skill", value: "Skill Feat" },
@@ -35,11 +22,6 @@ export class SavingThrows {
   public fortitude!: Mastery;
   public reflex!: Mastery;
   public will!: Mastery;
-}
-
-export class Skill {
-  public name: string = "";
-  public level!: Mastery;
 }
 
 export class ClassFeature {

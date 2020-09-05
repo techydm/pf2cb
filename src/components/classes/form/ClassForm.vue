@@ -23,13 +23,14 @@
           <b-input v-model="cls.baseHp" type="number" />
         </b-field>
         <b-field label="Require Deity" custom-class="has-text-light">
-          <b-radio-button
+          <b-button
+            expanded
             v-model="cls.requireDeity"
-            native-value="true"
-            type="is-success"
+            :type="cls.requireDeity ? 'is-success' : ''"
+            @click="isDietyRequired()"
           >
             <i class="ra ra-moon-sun ra-fw ra-2x" />
-          </b-radio-button>
+          </b-button>
         </b-field>
         <b-field label="Additional Skills" custom-class="has-text-light">
           <b-input v-model="cls.additionalSkills" type="number" />
@@ -193,12 +194,10 @@
 <script lang="ts">
 import SpellForm from "@/components/classes/form/SpellForm.vue";
 import LevelTable from "@/components/classes/LevelTable.vue";
-import {
-  ABILITYSCORES,
-  CharacterClass,
-  MASTERY,
-  Skill
-} from "@/shared/types/class";
+import { CharacterClass } from "@/shared/types/Class";
+import { ABILITYSCORES } from "@/shared/types/AbilityScores";
+import { MASTERY } from "@/shared/types/Mastery";
+import { Skill } from "@/shared/types/Skills";
 import { Ref, ref } from "@vue/composition-api";
 import {
   addAttack,
@@ -272,6 +271,10 @@ export default {
       }
     }
 
+    function isDietyRequired() {
+      cls.value.requireDeity = !cls.value.requireDeity;
+    }
+
     function submit() {
       addClass(cls.value);
       props.cancel();
@@ -288,9 +291,10 @@ export default {
       isOpen,
       skill,
       attack,
-      defense: defense,
+      defense,
       addSkills,
       removeSkills,
+      isDietyRequired,
       submit,
       close
     };

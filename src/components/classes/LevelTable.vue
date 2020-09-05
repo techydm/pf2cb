@@ -2,9 +2,10 @@
   <div>
     <!--  Table  -->
     <b-table bordered :columns="columns" :data="data">
-      <template slot="footer">
-        <div class="has-text-right">
+      <template v-if="!viewMode" slot="footer">
+        <div class="buttons is-pulled-right">
           <b-button @click="isOpen = true" type="is-info">Add</b-button>
+          <b-button type="is-danger" @click="clear()">Clear</b-button>
         </div>
       </template>
     </b-table>
@@ -24,6 +25,12 @@ export default {
   name: "LevelTable",
   components: {
     LevelForm
+  },
+  props: {
+    viewMode: {
+      default: false,
+      type: [Boolean]
+    }
   },
   setup() {
     // Table info
@@ -51,11 +58,17 @@ export default {
       isOpen.value = false;
     }
 
+    function clear() {
+      data.value = [];
+      getWorkingClass().value.levels = [];
+    }
+
     return {
       data,
       columns,
       isOpen,
-      close
+      close,
+      clear
     };
   }
 };
@@ -64,4 +77,3 @@ export default {
 <style scoped lang="scss">
 @import "../../assets/styles";
 </style>
-s
