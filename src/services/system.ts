@@ -5,7 +5,8 @@ import {
   readDir,
   readTextFile,
   writeFile,
-  removeFile
+  removeFile,
+  removeDir
 } from "tauri/api/fs";
 import { Ref, ref } from "@vue/composition-api";
 
@@ -144,8 +145,22 @@ async function removeAppFiles(fileType: FileTypes): Promise<void> {
     });
   } else {
     await removeFile(`pf2cb/${fileName}`, {
-      dir: BaseDirectory.Home
+      dir: Dir.Home
     }).catch(err => {
+      console.error(err.toString());
+      throw err;
+    });
+  }
+}
+
+async function removeAppDir(): Promise<void> {
+  if (appDirectory.value !== "") {
+    await removeDir(appDirectory.value).catch(err => {
+      console.error(err.toString());
+      throw err;
+    });
+  } else {
+    await removeDir("pf2cb", { dir: Dir.Home }).catch(err => {
       console.error(err.toString());
       throw err;
     });
@@ -160,8 +175,10 @@ async function copyAppDir(filePath: string): Promise<void> {
     });
 
     const fileName: string = getFileName(file.fileType);
-
-    await writeFileData(`${filePath}/${fileName}`, fileJson).catch(err => {
+    await writeFile({
+      path: `${filePath}/${fileName}`,
+      contents: fileJson
+    }).catch(err => {
       console.error(err.toString());
       throw err;
     });
@@ -169,6 +186,11 @@ async function copyAppDir(filePath: string): Promise<void> {
     await removeAppFiles(file.fileType).catch(err => {
       throw err;
     });
+  });
+
+  await removeAppDir().catch(err => {
+    console.error(err.toString());
+    throw err;
   });
 }
 
@@ -223,7 +245,6 @@ export function getAppDir(): Ref<string> {
   return appDirectory;
 }
 
-// TODO: app migration function for when the app directory is moved
 export async function appMigration(filePath: string): Promise<void> {
   // Set new app directory and save it to the config
   const configsJSON = await readTextFile("pf2cb/setting.json", {
@@ -239,10 +260,6 @@ export async function appMigration(filePath: string): Promise<void> {
     // TODO: Version check
 
     // Create and move the files to the new directory
-    await createDir(configs.appDir).catch(err => {
-      console.error(err.toString());
-    });
-
     await copyAppDir(configs.appDir).catch(err => {
       console.error(err.toString());
     });

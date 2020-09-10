@@ -14,7 +14,7 @@
 <script lang="ts">
 import { ref, Ref } from "@vue/composition-api";
 import { open } from "tauri/api/dialog";
-import { getAppDir } from "@/services/system";
+import { appMigration, getAppDir } from "@/services/system";
 
 export default {
   name: "SaveFolder",
@@ -23,7 +23,7 @@ export default {
 
     function openDialog() {
       open({ directory: true, multiple: false }).then(filepath => {
-        appDir.value = filepath;
+        appMigration(filepath as string);
       });
     }
 
