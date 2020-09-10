@@ -4,7 +4,8 @@ import {
   Dir,
   readDir,
   readTextFile,
-  writeFile
+  writeFile,
+  removeFile
 } from "tauri/api/fs";
 import { Ref, ref } from "@vue/composition-api";
 
@@ -106,7 +107,69 @@ async function writeFileData(
 }
 
 async function updateConfig(config: SystemConfig): Promise<void> {
-  // stuff
+  // Get old configs
+  const configsJSON = await readTextFile("pf2cb/setting.json", {
+    dir: Dir.Config
+  }).catch(err => {
+    console.log(err.toString());
+    throw err;
+  });
+
+  console.log(configsJSON);
+  // Remove previous settings
+  await removeFile("pf2cb/setting.json", { dir: Dir.Config }).catch(err => {
+    console.error(err.toString());
+    throw err;
+  });
+
+  // Write the new configs
+  await writeFile(
+    { path: "pf2cb/setting.json", contents: JSON.stringify(config) },
+    { dir: Dir.Config }
+  ).catch(err => {
+    console.error(err.toString());
+    throw err;
+  });
+
+  // Set Store values
+  appDirectory.value = config.appDir;
+}
+
+async function removeAppFiles(fileType: FileTypes): Promise<void> {
+  const fileName = getFileName(fileType);
+  if (appDirectory.value !== "") {
+    await removeFile(`${appDirectory.value}/${fileName}`).catch(err => {
+      console.error(err.toString());
+      throw err;
+    });
+  } else {
+    await removeFile(`pf2cb/${fileName}`, {
+      dir: BaseDirectory.Home
+    }).catch(err => {
+      console.error(err.toString());
+      throw err;
+    });
+  }
+}
+
+async function copyAppDir(filePath: string): Promise<void> {
+  // Copy files from old directory to new one
+  Files.map(async file => {
+    const fileJson: string = await getFileData(file.fileType).catch(err => {
+      throw err;
+    });
+
+    const fileName: string = getFileName(file.fileType);
+
+    await writeFileData(`${filePath}/${fileName}`, fileJson).catch(err => {
+      console.error(err.toString());
+      throw err;
+    });
+
+    await removeAppFiles(file.fileType).catch(err => {
+      throw err;
+    });
+  });
 }
 
 // External functions
@@ -163,8 +226,32 @@ export function getAppDir(): Ref<string> {
 // TODO: app migration function for when the app directory is moved
 export async function appMigration(filePath: string): Promise<void> {
   // Set new app directory and save it to the config
-  // Copy files from old directory to new one
-  // Delete old files and directory
+  const configsJSON = await readTextFile("pf2cb/setting.json", {
+    dir: Dir.Config
+  }).catch(err => {
+    console.error(err.toString());
+  });
+
+  if (configsJSON) {
+    const configs: SystemConfig = JSON.parse(configsJSON);
+    configs.appDir = filePath;
+
+    // TODO: Version check
+
+    // Create and move the files to the new directory
+    await createDir(configs.appDir).catch(err => {
+      console.error(err.toString());
+    });
+
+    await copyAppDir(configs.appDir).catch(err => {
+      console.error(err.toString());
+    });
+
+    // Update the config to the new app directory
+    await updateConfig(configs).catch(err => {
+      console.error(err.toString());
+    });
+  }
 }
 
 export async function saveFile(
