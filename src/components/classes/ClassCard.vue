@@ -1,14 +1,15 @@
 <template>
-  <div>
-    <div @click="openModal()" class="cls-base">
-      <img class="cls-icon" alt=https://picsum.photos/200
-      src="@/assets/pf2class_icon/druid.png"/>
-      <div class="cls-info">
-        <div>Name: {{ cls.name }}</div>
-        <div>Primary Ability: {{ cls.primaryAbility }}</div>
-        <div>Hp: {{ cls.baseHp }}</div>
-        <div>Spellcaster: {{ cls.spellSlots.length > 0 }}</div>
-      </div>
+  <div class="cls-base">
+    <img
+      class="cls-icon"
+      alt="Class Icon"
+      src="@/assets/pf2class_icon/druid.png"
+    />
+    <div class="cls-info">
+      <div>Name: {{ cls.name }}</div>
+      <div>Primary Ability: {{ cls.primaryAbility }}</div>
+      <div>Hp: {{ cls.baseHp }}</div>
+      <div>Spellcaster: {{ cls.spellSlots.length > 0 }}</div>
     </div>
     <!--  Modal  -->
     <b-modal :active.sync="classView" :can-cancel="false">
