@@ -4,6 +4,7 @@
 )]
 
 mod cmd;
+mod connectors;
 
 fn main() {
   tauri::AppBuilder::new()
