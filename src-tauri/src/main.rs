@@ -20,6 +20,7 @@ fn main() {
             MyCustomCommand { argument } => {
               //  your command code
               println!("{}", argument);
+              connectors::create_record();
             }
           }
           Ok(())
